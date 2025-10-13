@@ -1,0 +1,10 @@
+<h1>pokemon list</h1>
+
+<p-button label="Check" />
+
+
+<ul>
+  @for (pokemon of (pokemons$ | async); track pokemon.name) {
+    <li> name: {{ pokemon.name }} =====> link: {{pokemon.url}} </li>
+  }
+</ul>
