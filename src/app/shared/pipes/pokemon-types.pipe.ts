@@ -6,11 +6,11 @@ import { Type } from '../../models/PokemonType'
   standalone: true
 })
 export class DisplayTypesPipe implements PipeTransform {
-  transform(typesObject: Type[]): string {
+  transform(typesObject: Type[]): string[] {
     if (!typesObject || !Array.isArray(typesObject)) {
-      return "";
+      return [];
     }
     const typeList = typesObject.map(type => type.type.name);
-    return typeList.join(", ");
+    return typeList;
   }
 }

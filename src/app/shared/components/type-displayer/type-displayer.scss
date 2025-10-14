@@ -1,0 +1,162 @@
+.pokemon-type-displayer {
+  display: flex;
+  flex-direction: row;
+  gap: 0.7rem;
+  transition: 200ms all;
+  .type-icon {
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 100%;
+    &:hover {
+      filter:saturate(200%)
+    }
+    img {
+      height: 60%;
+      width: 60%;
+      margin: 20%;
+    }
+  }
+  .bug {
+    background: #92BC2C;
+  
+    &:hover {
+      box-shadow: 0 0 10px #92BC2C;
+    }
+  }
+  
+  .dark {
+    background: #595761;
+  
+    &:hover {
+      box-shadow: 0 0 10px hsl(0, 0%, 15%);
+    }
+  }
+  
+  .dragon {
+    background: #0C69C8;
+  
+    &:hover {
+      box-shadow: 0 0 10px #0C69C8;
+    }
+  }
+  
+  .electric {
+    background: #F2D94E;
+  
+    &:hover {
+      box-shadow: 0 0 10px #F2D94E;
+    }
+  }
+  
+  .fire {
+    background: #FBA54C;
+  
+    &:hover {
+      box-shadow: 0 0 10px #FBA54C;
+    }
+  }
+  
+  .fairy {
+    background: #EE90E6;
+  
+    &:hover {
+      box-shadow: 0 0 10px #EE90E6;
+    }
+  }
+  
+  .fighting {
+    background: #D3425F;
+  
+    &:hover {
+      box-shadow: 0 0 10px #D3425F;
+    }
+  }
+  
+  .flying {
+    background: #A1BBEC;
+  
+    &:hover {
+      box-shadow: 0 0 10px #A1BBEC;
+    }
+  }
+  
+  .ghost {
+    background: #5F6DBC;
+  
+    &:hover {
+      box-shadow: 0 0 10px #5F6DBC;
+    }
+  }
+  
+  .grass {
+    background: #5FBD58;
+  
+    &:hover {
+      box-shadow: 0 0 10px #5FBD58;
+    }
+  }
+  
+  .ground {
+    background: #DA7C4D;
+  
+    &:hover {
+      box-shadow: 0 0 10px #DA7C4D;
+    }
+  }
+  
+  .ice {
+    background: #75D0C1;
+  
+    &:hover {
+      box-shadow: 0 0 10px #75D0C1;
+    }
+  }
+  
+  .normal {
+    background: #A0A29F;
+  
+    &:hover {
+      box-shadow: 0 0 10px #A0A29F;
+    }
+  }
+  
+  .poison {
+    background: #B763CF;
+  
+    &:hover {
+      box-shadow: 0 0 10px #B763CF;
+    }
+  }
+  
+  .psychic {
+    background: #FA8581;
+  
+    &:hover {
+      box-shadow: 0 0 10px #FA8581;
+    }
+  }
+  
+  .rock {
+    background: #C9BB8A;
+  
+    &:hover {
+      box-shadow: 0 0 10px #C9BB8A;
+    }
+  }
+  
+  .steel {
+    background: #5695A3;
+  
+    &:hover {
+      box-shadow: 0 0 10px #5695A3;
+    }
+  }
+  
+  .water {
+    background: #539DDF;
+  
+    &:hover {
+      box-shadow: 0 0 10px #539DDF;
+    }
+  }
+}

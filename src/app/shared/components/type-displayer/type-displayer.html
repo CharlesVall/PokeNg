@@ -1,1 +1,7 @@
-<p>type-displayer works!</p>
+<div class="pokemon-type-displayer">
+  @for (type of types(); track $index) {
+    <div class="type-icon" [class]="type">
+      <img [src]="`/typesSVG/${type}.svg`">
+    </div>
+  }
+</div>
