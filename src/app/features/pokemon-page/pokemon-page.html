@@ -1,0 +1,9 @@
+<div class="pokemon-page">
+  <p-button (click)="returnToPokemonList()"><i class="pi pi-undo"></i>return</p-button>
+  @if (pokemonPageState.currentPokemon(); as pokemon) {
+    <app-pokemon-card [pokemon]="pokemon" />
+  } @else {
+    <p-skeleton class="pokemon-card_skeleton" width="65%" height="22rem" />
+  }
+  <app-forward-back-buttons-layout />
+</div>

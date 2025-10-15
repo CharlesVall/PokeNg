@@ -1,9 +1,9 @@
-export interface Type {
+export interface PokemonType {
   slot: number
-  type: Type2
+  type: PokemonType2
 }
 
-export interface Type2 {
+export interface PokemonType2 {
   name: string
   url: string
 }

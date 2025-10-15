@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
+import { PokemonType } from 'app/models/PokemonType';
 
 @Component({
   selector: 'app-type-displayer',
@@ -8,7 +9,7 @@ import { Component, computed, input } from '@angular/core';
   styleUrl: './type-displayer.scss'
 })
 export class TypeDisplayer {
-  types = input([''], { alias: 'types'})
+  types = input.required({ alias: 'types'})
 
   typeSvgUrl = computed(() => this.types())
 }

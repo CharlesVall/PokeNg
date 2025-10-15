@@ -1,0 +1,15 @@
+.pokemon-card_info {
+  p {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .pokemon-card_abilities-list {
+    display: flex;
+    ul {
+      padding-left: 1rem;
+      margin: 0;
+      list-style: none;
+    }
+  }
+}

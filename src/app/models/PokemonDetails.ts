@@ -1,5 +1,6 @@
-import { Type } from './PokemonType'
-import { Ability } from './PokemonAbilities'
+import { PokemonType } from './PokemonType'
+import { Ability } from './PokemonAbility'
+import { Stat } from './PokemonStat'
 
 export interface PokemonDetails {
   abilities: Ability[]
@@ -20,7 +21,7 @@ export interface PokemonDetails {
   species: Species
   sprites: Sprites
   stats: Stat[]
-  types: Type[]
+  types: PokemonType[]
   weight: number
 }
 
@@ -341,15 +342,4 @@ export interface GenerationViii {
 export interface Icons2 {
   front_default: string
   front_female: any
-}
-
-export interface Stat {
-  base_stat: number
-  effort: number
-  stat: Stat2
-}
-
-export interface Stat2 {
-  name: string
-  url: string
 }
