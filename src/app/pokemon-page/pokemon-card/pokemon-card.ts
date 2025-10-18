@@ -4,7 +4,7 @@ import { Component, input } from '@angular/core';
 import { CardModule } from 'primeng/card';
 
 import { PokemonDetails } from '@core/models';
-import { PokemonStatsTable } from '../../@shared/components/pokemon-stats-table/pokemon-stats-table';
+import { PokemonStatsTable } from '@shared/components/pokemon-stats-table/pokemon-stats-table';
 import { PokemonInfo } from "./pokemon-info/pokemon-info";
 
 @Component({

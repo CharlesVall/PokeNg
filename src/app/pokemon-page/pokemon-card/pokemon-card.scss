@@ -2,14 +2,13 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  max-width: 65%;
+  max-width: 60rem;
   margin: auto;
+  transition: 0.5s ease;
   .pokemon-card_main {
     display: flex;
     gap: 3rem;
-    @media only screen and (max-width: 1080px) {
-      flex-direction: column;
-    }
+    flex-wrap: wrap;
   }
   .pokemon-card_image-info {
     display: flex;

@@ -1,10 +1,28 @@
 <div class="pokemon-card_stats">
   <table>
-    <tr><td><strong>Hp:</strong></td><td>{{ pokemon().stats | displayStat:"hp" }}</td></tr>
-    <tr><td><strong>Attack:</strong></td>{{ pokemon().stats | displayStat:"attack" }}<td></td></tr>
-    <tr><td><strong>Defense:</strong></td>{{ pokemon().stats | displayStat:"defense" }}<td></td></tr>
-    <tr><td><strong>Sp. Atk:</strong></td>{{ pokemon().stats | displayStat:"special-attack" }}<td></td></tr>
-    <tr><td><strong>Sp. Def:</strong></td>{{ pokemon().stats | displayStat:"special-defense" }}<td></td></tr>
-    <tr><td><strong>Speed:</strong></td><td>{{ pokemon().stats | displayStat:"speed" }}</td></tr>
+    <tr>
+      <td><strong>Hp:</strong></td><td>{{ pokemon().stats | displayStat:"hp" }}</td>
+      <td><app-stat-bar [statValue]="pokemon().stats | displayStat:'hp'"/></td>
+    </tr>
+    <tr>
+      <td><strong>Attack:</strong></td><td>{{ pokemon().stats | displayStat:"attack" }}</td>
+      <td><app-stat-bar [statValue]="pokemon().stats | displayStat:'attack'" /></td>
+    </tr>
+    <tr>
+      <td><strong>Defense:</strong></td><td>{{ pokemon().stats | displayStat:"defense" }}</td>
+      <td><app-stat-bar [statValue]="pokemon().stats | displayStat:'defense'" /></td>
+    </tr>
+    <tr>
+      <td><strong>Sp. Atk:</strong></td><td>{{ pokemon().stats | displayStat:"special-attack" }}</td>
+      <td><app-stat-bar [statValue]="pokemon().stats | displayStat:'special-attack'" /></td>
+    </tr>
+    <tr>
+      <td><strong>Sp. Def:</strong></td><td>{{ pokemon().stats | displayStat:"special-defense" }}</td>
+      <td><app-stat-bar [statValue]="pokemon().stats | displayStat:'special-defense'" /></td>
+    </tr>
+    <tr>
+      <td><strong>Speed:</strong></td><td>{{ pokemon().stats | displayStat:"speed" }}</td>
+      <td><app-stat-bar [statValue]="pokemon().stats | displayStat:'speed'" /></td>
+    </tr>
   </table>
 </div>
