@@ -1,0 +1,14 @@
+.pokemon-page {
+  max-width: 95%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2.7rem;
+  p-button {
+    width: 7%;
+  }
+  .pokemon-card_skeleton {
+    margin: auto;
+  }
+}

@@ -1,0 +1,14 @@
+<div class="pokemon-card_info">
+  <p><strong>Id:</strong> #{{ pokemon().id }}</p>
+  <p>
+    <strong>Types:</strong>
+    <app-pokemon-types-displayer [types]="pokemon().types | displayTypes" />
+  </p>
+  <div class="pokemon-card_abilities-list"><strong>Abilities:</strong>
+    <ul>
+      @for (ability of (pokemon().abilities | displayAbilities); track $index) {
+        <li>{{ ability }}</li>
+      }
+    </ul>
+  </div>
+</div>
