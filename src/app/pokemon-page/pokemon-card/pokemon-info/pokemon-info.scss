@@ -1,10 +1,10 @@
-.pokemon-card_info {
+.pokemon-card__info {
   p {
     display: flex;
     align-items: center;
     gap: 1rem;
   }
-  .pokemon-card_abilities-list {
+  .pokemon-card__abilities-list {
     display: flex;
     ul {
       padding-left: 1rem;

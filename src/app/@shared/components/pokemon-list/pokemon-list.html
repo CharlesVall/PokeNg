@@ -1,6 +1,6 @@
-<p-table [value]="(pokemonDetails$ | async) || []" [tableStyle]="{ 'min-width': '50rem' }">
+<p-table [value]="(pokemonDetails$ | async) || []" [scrollable]="true" scrollHeight="75vh">
   <ng-template #header>
-  	<tr class="pokemon-list_header">
+    <tr class="pokemon-list__header">
       <th>Index</th>
       <th>Image</th>
       <th>Name</th>
@@ -9,9 +9,13 @@
     </tr>
   </ng-template>
   <ng-template #body let-pokemon>
-    <tr class="pokemon-list_row" (click)="traveToPokemonDetailsPage(pokemon.id)">
+    <tr class="pokemon-list__row" (click)="traveToPokemonDetailsPage(pokemon.id)">
       <td>{{ pokemon.id }}</td>  
-      <td><img ngSrc="{{ pokemon.sprites.front_default }}" width="96" height="96" priority></td>
+      @if (pokemon.id == 1) {
+        <td><img ngSrc="{{ pokemon.sprites.front_default }}" width="96" height="96" priority></td>
+      } @else {
+        <td><img ngSrc="{{ pokemon.sprites.front_default }}" width="96" height="96"></td>
+      }
       <td>{{ pokemon.name | titlecase  }}</td>
       <td><app-pokemon-types-displayer [types]="pokemon.types | displayTypes" /></td>
       <td>{{ pokemon.abilities | displayAbilities:true }}</td>
@@ -19,7 +23,7 @@
   </ng-template>
   <ng-template #emptymessage>
     @for (skeleton of [].constructor(10); track $index) {
-      <tr class="pokemon-row_skeleton">
+      <tr class="pokemon-row__skeleton">
         <td class="skeleton-index">
           <p-skeleton width="80%"/>
         </td>
@@ -39,17 +43,3 @@
     }
   </ng-template>
 </p-table>
-
-<!--
-
-  <ng-template #body let-pokemon>
-    <tr class="pokemon-list_row" (click)="traveToPokemonDetailsPage(pokemon.id)">
-      <td>{{ pokemon.id }}</td>  
-      <td><img ngSrc="{{ pokemon.sprites.front_default }}" width="96" height="96" priority></td>
-      <td>{{ pokemon.name | titlecase  }}</td>
-      <td><app-type-displayer [types]="pokemon.types | displayTypes"></app-type-displayer></td>
-      <td>{{ pokemon.abilities | displayAbilities:true }}</td>
-    </tr>
-  </ng-template>
-
--->

@@ -1,0 +1,16 @@
+.sidebar {
+  display: flex;
+  justify-content: center;
+  height: 95vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  p-card {
+    height: 100%;
+    .sidebar-wrapper {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      gap: 3rem;
+    }
+  }
+}

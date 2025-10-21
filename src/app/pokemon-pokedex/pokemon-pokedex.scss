@@ -1,0 +1,18 @@
+.pokedex {
+  margin: auto;
+  max-width: 90%;
+  .pokedex__main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 1rem;
+    .pokedex__frame-list {
+      border: 1px solid #3f3f46;
+      border-radius: 1rem;
+      padding: 1.5rem;
+    }
+    h1 {
+      margin: 0;
+    }
+  }
+}

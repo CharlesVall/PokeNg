@@ -5,12 +5,12 @@
   max-width: 60rem;
   margin: auto;
   transition: 0.5s ease;
-  .pokemon-card_main {
+  .pokemon-card__main {
     display: flex;
     gap: 3rem;
     flex-wrap: wrap;
   }
-  .pokemon-card_image-info {
+  .pokemon-card__image-info {
     display: flex;
     gap: 3rem;
     img {

@@ -4,11 +4,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 2.7rem;
+  gap: 4.5rem;
   p-button {
     width: 7%;
   }
-  .pokemon-card_skeleton {
+  .pokemon-card__skeleton {
     margin: auto;
   }
 }

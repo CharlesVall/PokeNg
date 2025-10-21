@@ -1,6 +1,9 @@
-<h1>PokeNg</h1>
-<!--
-
-<p-button label="Toggle Dark Mode" (onClick)="toggleDarkMode()"/>
--->
-<router-outlet></router-outlet>
+<div class="app-layout">
+  <aside class="sidebar">
+    <app-sidebar />
+  </aside>
+  
+  <main class="main-content">
+    <router-outlet />
+  </main>
+</div>

@@ -1,0 +1,20 @@
+.sidebar-buttons {
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  a {
+    text-decoration: none;
+    .sidebar__button {
+      height: 2.625rem;
+      display: flex;
+      justify-content: center;
+    }
+    .sidebar__version {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      font-size: 14px;
+    }
+  }
+}

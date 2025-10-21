@@ -19,7 +19,7 @@ import { PokemonId } from '@core/models/';
 export class PokemonPage implements OnInit, OnDestroy {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
-  public pokemonPageState = inject(PokemonPageState);
+  protected pokemonPageState = inject(PokemonPageState);
   
   private routeSubscription?: Subscription;
 
@@ -40,6 +40,6 @@ export class PokemonPage implements OnInit, OnDestroy {
   }
 
   protected returnToPokemonList(): void {  
-    this.router.navigateByUrl('');
+    this.router.navigateByUrl('pokedex');
   }
 }
