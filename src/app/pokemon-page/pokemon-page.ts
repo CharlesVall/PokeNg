@@ -1,7 +1,6 @@
-import { Component, inject, OnInit, OnDestroy } from '@angular/core';
+import { Component, computed, effect, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-
+import { toSignal } from '@angular/core/rxjs-interop';
 import { ButtonModule } from 'primeng/button';
 import { SkeletonModule } from 'primeng/skeleton';
 
@@ -16,30 +15,26 @@ import { PokemonId } from '@core/models/';
   templateUrl: './pokemon-page.html',
   styleUrl: './pokemon-page.scss'
 })
-export class PokemonPage implements OnInit, OnDestroy {
-  private route = inject(ActivatedRoute);
-  private router = inject(Router);
-  protected pokemonPageState = inject(PokemonPageState);
-  
-  private routeSubscription?: Subscription;
+export class PokemonPage {
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
+  protected readonly pokemonPageState = inject(PokemonPageState);
 
-  public ngOnInit(): void {
-    this.routeSubscription = this.route.params.subscribe(params => {
-      const pokemonId = Number(params['id']);
-  
-      if (pokemonId && pokemonId > 0) {
-        this.pokemonPageState.loadPokemon(new PokemonId(pokemonId));
+  private readonly routeParams = toSignal(this.route.params);
+  protected pokemonId = computed(() => Number(this.routeParams()?.['id'] ?? 0));
+
+  public constructor() {
+    effect(() => {
+      const id = this.pokemonId();
+      if (id > 0) {
+        this.pokemonPageState.loadPokemon(new PokemonId(id));
+      } else {
+        this.pokemonPageState.clearPokemon();
       }
     });
   }
 
-  public ngOnDestroy(): void {
-    this.routeSubscription?.unsubscribe();
-    
-    this.pokemonPageState.clearPokemon();
-  }
-
-  protected returnToPokemonList(): void {  
+  protected returnToPokemonList(): void {
     this.router.navigateByUrl('pokedex');
   }
 }

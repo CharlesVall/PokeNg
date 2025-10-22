@@ -7,6 +7,19 @@
       <th style="width:14%">Types</th>
       <th style="width:42%">Abilities</th>
     </tr>
+    <tr class="pokemon-list__filter-row">
+      <th style="width:8%">
+        <input class="search-id" placeholder="id">
+      </th>
+      <th style="width:14%"></th>
+      <th style="width:22%">
+        <input class="search-name" placeholder="Search name">
+      </th>
+      <th style="width:14%">Types</th>
+      <th style="width:42%">
+        <input class="search-ability" placeholder="Search ability">
+      </th>
+    </tr>
   </ng-template>
   <ng-template #body let-pokemon>
     <tr class="pokemon-list__row" (click)="traveToPokemonDetailsPage(pokemon.id)">
@@ -23,7 +36,7 @@
   </ng-template>
   <ng-template #emptymessage>
     @for (skeleton of [].constructor(10); track $index) {
-      <tr class="pokemon-row__skeleton">
+      <tr class="pokemon-list__skeleton">
         <td style="width:8%" >
           <p-skeleton width="80%"/>
         </td>

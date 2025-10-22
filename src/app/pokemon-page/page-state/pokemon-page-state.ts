@@ -3,13 +3,13 @@ import { firstValueFrom } from 'rxjs';
 
 import { PokemonService } from '@core/services/pokemon-service/pokemon.service';
 import { PokemonDetails } from '@core/models/';
-import { PokemonId } from '@core/models/PokemonId';
+import { PokemonId } from '@core/models/pokemon-id';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokemonPageState {
-  private pokemonService = inject(PokemonService);
+  private readonly pokemonService = inject(PokemonService);
 
   private _currentPokemon = signal<PokemonDetails | null>(null);
   private _loading = signal<boolean>(false);

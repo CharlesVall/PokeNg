@@ -5,7 +5,7 @@ import { PokemonPageState } from '../page-state/pokemon-page-state';
 import { PokemonService } from '@core/services/pokemon-service/pokemon.service';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { switchMap } from 'rxjs';
-import { PokemonId } from '@core/models/PokemonId';
+import { PokemonId } from '@core/models/pokemon-id';
 
 @Component({
   selector: 'app-forward-back-buttons-layout',
@@ -14,10 +14,10 @@ import { PokemonId } from '@core/models/PokemonId';
   styleUrl: './forward-back-buttons-layout.scss'
 })
 export class ForwardBackButtonsLayout {
-  private pokemonPageState = inject(PokemonPageState);
-  private pokemonService = inject(PokemonService);
+  private readonly pokemonPageState = inject(PokemonPageState);
+  private readonly pokemonService = inject(PokemonService);
 
-  public currentPokemon = computed(() => this.pokemonPageState.currentPokemon());
+  protected readonly currentPokemon = computed(() => this.pokemonPageState.currentPokemon());
   
   private previousPokemonId = computed(() => {
     const currentPokemon = this.currentPokemon();
@@ -31,14 +31,14 @@ export class ForwardBackButtonsLayout {
     return currentPokemon.id.next();
   });
 
-  public previousPokemon = toSignal(
+  protected previousPokemon = toSignal(
     toObservable(this.previousPokemonId).pipe(
       switchMap(id => this.pokemonService.getPokemonRowById(id))
     ),
     { initialValue: null }
   );
 
-  public nextPokemon = toSignal(
+  protected nextPokemon = toSignal(
     toObservable(this.nextPokemonId).pipe(
       switchMap(id => this.pokemonService.getPokemonRowById(id))
     ),

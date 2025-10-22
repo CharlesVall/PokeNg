@@ -2,32 +2,25 @@ import { Injectable, inject } from '@angular/core';
 import { Observable, catchError, map, of, shareReplay, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-import { PokemonWithUrlDto } from '@core/models/';
-import * as pokeApi from  './pokeapi-repository.helpers'
-import { PokemonRowDto } from '@core/models/';
+import { PokemonRowData } from '@core/models/';
 import { PokemonId } from '@core/models/';
-import { PokemonDetailsDto } from '@core/models/';
+import { PokemonDetailsData } from '@core/models/';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokeapiRepository {
   private http = inject(HttpClient);
-  private allPokemonsCache$?: Observable<PokemonDetailsDto[]>;
-  
-  public getAllPokemonUrls(): Observable<PokemonWithUrlDto[]> {
-    return pokeApi.fetchAllPokemon(this.http).pipe(
-      map(response => response.results)
-    )
+  private allPokemonsCache$?: Observable<PokemonRowData[]>;
+  private readonly pokeapiUrl = 'https://pokeapi.co/api/v2/'
+
+  public getPokemonDetailsById(pokemonId: PokemonId): Observable<PokemonDetailsData> {
+    return this.http.get<PokemonDetailsData>(`${this.pokeapiUrl}/pokemon/${pokemonId.value}`)
   }
 
-  public getPokemonDetailsById(pokemonId: PokemonId): Observable<PokemonDetailsDto> {
-    return pokeApi.fetchPokemonById(pokemonId, this.http)
-  }
-
-  public getAllPokemonRows(): Observable<PokemonRowDto[]> {
+  public getAllPokemonRows(): Observable<PokemonRowData[]> {
     if (!this.allPokemonsCache$) {
-      this.allPokemonsCache$ = pokeApi.fetchPokemonDetailsFromJSON(this.http).pipe(
+      this.allPokemonsCache$ = this.http.get<PokemonRowData[]>('pokemon-data.json').pipe(
         shareReplay(1),
         catchError(err => {
           this.allPokemonsCache$ = of([]);
@@ -38,7 +31,7 @@ export class PokeapiRepository {
     return this.allPokemonsCache$
   }
 
-  public getPokemonRowById(pokemonId: PokemonId): Observable<PokemonRowDto> {
+  public getPokemonRowById(pokemonId: PokemonId): Observable<PokemonRowData> {
     if (pokemonId.value < PokemonId.MIN_POKEMON_ID || pokemonId.value > PokemonId.MAX_POKEMON_ID) {
       return throwError(() => new Error(`Pokemon ID ${pokemonId.value} is out of range (${PokemonId.MIN_POKEMON_ID}-${PokemonId.MAX_POKEMON_ID})`));
     }

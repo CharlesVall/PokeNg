@@ -1,9 +1,9 @@
-import { Mfe, PokemonDetailsDto } from './interfaces/PokemonDetailsDto'
-import { PokemonType } from './interfaces/PokemonType'
-import { Sprites } from './interfaces/PokemonSprites'
-import { Ability } from './interfaces/PokemonAbility'
-import { Stat } from './interfaces/PokemonStat'
-import { PokemonId } from './PokemonId'
+import { Mfe, PokemonDetailsData } from './interfaces/pokemon-details-data'
+import { PokemonType } from './interfaces/pokemon-type'
+import { Sprites } from './interfaces/pokemon-sprites'
+import { Ability } from './interfaces/pokemon-ability'
+import { Stat } from './interfaces/pokemon-stat'
+import { PokemonId } from './pokemon-id'
 
 export class PokemonDetails {
   id: PokemonId;
@@ -14,7 +14,7 @@ export class PokemonDetails {
   abilities: Ability[];
   stats: Stat[];
 
-  constructor(pokemonDetailsData: PokemonDetailsDto) {
+  constructor(pokemonDetailsData: PokemonDetailsData) {
     this.id = new PokemonId(pokemonDetailsData.id);
     this.moves = pokemonDetailsData.moves
     this.name = pokemonDetailsData.name;
@@ -24,7 +24,7 @@ export class PokemonDetails {
     this.stats = pokemonDetailsData.stats
   }
 
-  static fromDto(dto: PokemonDetailsDto): PokemonDetails {
-    return new PokemonDetails(dto);
+  static fromDto(data: PokemonDetailsData): PokemonDetails {
+    return new PokemonDetails(data);
   }
 }

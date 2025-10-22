@@ -1,9 +1,9 @@
-import { PokemonType } from './PokemonType'
-import { Sprites } from './PokemonSprites'
-import { Ability } from './PokemonAbility'
-import { Stat } from './PokemonStat'
+import { PokemonType } from './pokemon-type'
+import { Sprites } from './pokemon-sprites'
+import { Ability } from './pokemon-ability'
+import { Stat } from './pokemon-stat'
 
-export interface PokemonDetailsDto {
+export interface PokemonDetailsData {
   abilities: Ability[]
   base_experience: number
   cries: Cries

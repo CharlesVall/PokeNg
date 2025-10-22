@@ -1,29 +1,27 @@
-export * from './interfaces/PokemonWithUrlDto'
-export * from './interfaces/PokemonRowDto'
-export * from './interfaces/PokemonDetailsDto'
+export * from './interfaces/pokemon-row-data'
+export * from './interfaces/pokemon-details-data'
 
-export * from './interfaces/PokemonAbility'
-export * from './interfaces/PokemonType'
-export * from './interfaces/PokemonSprites'
+export * from './interfaces/pokemon-ability'
+export * from './interfaces/pokemon-type'
+export * from './interfaces/pokemon-sprites'
 
-export * from './PokemonId'
-export * from './PokemonRow'
+export * from './pokemon-id'
+export * from './pokemon-row'
 
-export * from './interfaces/PokemonStat'
-export * from './PokemonDetails'
-
+export * from './interfaces/pokemon-stat'
+export * from './pokemon-details'
 
 
-import { PokemonWithUrlDto } from './interfaces/PokemonWithUrlDto';
-import { PokemonRowDto } from './interfaces/PokemonRowDto'
-import { PokemonDetailsDto } from './interfaces/PokemonDetailsDto'
 
-import { Ability, Ability2 } from './interfaces/PokemonAbility';
-import { PokemonType, PokemonType2 } from './interfaces/PokemonType';
-import { Sprites } from './interfaces/PokemonSprites'
+import { PokemonRowData } from './interfaces/pokemon-row-data'
+import { PokemonDetailsData } from './interfaces/pokemon-details-data'
 
-import { PokemonId } from './PokemonId'
-import { PokemonRow } from './PokemonRow';
+import { Ability, Ability2 } from './interfaces/pokemon-ability';
+import { PokemonType, PokemonType2 } from './interfaces/pokemon-type';
+import { Sprites } from './interfaces/pokemon-sprites'
 
-import { Stat, Stat2 } from './interfaces/PokemonStat';
-import { PokemonDetails } from './PokemonDetails';
+import { PokemonId } from './pokemon-id'
+import { PokemonRow } from './pokemon-row';
+
+import { Stat, Stat2 } from './interfaces/pokemon-stat';
+import { PokemonDetails } from './pokemon-details';

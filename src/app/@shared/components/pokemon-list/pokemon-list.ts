@@ -8,7 +8,7 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { PokemonPipes } from '@shared/pipes';
 import { PokemonTypesDisplayer } from '@shared/components/pokemon-types-displayer/pokemon-types-displayer';
 import { PokemonService } from '@core/services/pokemon-service/pokemon.service';
-import { PokemonId } from '@core/models/PokemonId';
+import { PokemonId } from '@core/models/pokemon-id';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -17,16 +17,16 @@ import { PokemonId } from '@core/models/PokemonId';
   styleUrl: './pokemon-list.scss'
 })
 export class PokemonList implements OnInit {
-  private pokemonService = inject(PokemonService);
-  private router = inject(Router)
+  private readonly pokemonService = inject(PokemonService);
+  private readonly router = inject(Router)
 
-  public pokemonDetails$ = this.pokemonService.getAllPokemonRows();
+  protected readonly pokemonDetails$ = this.pokemonService.getAllPokemonRows();
   
-  public traveToPokemonDetailsPage(pokemonId: PokemonId) {
+  protected traveToPokemonDetailsPage(pokemonId: PokemonId) {
     this.router.navigate(['/pokemon', pokemonId.value]);
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     const input = document.querySelectorAll("input")
     if (input) {
       console.log(input)

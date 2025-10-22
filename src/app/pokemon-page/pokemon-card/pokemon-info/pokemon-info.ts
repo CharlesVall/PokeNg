@@ -11,5 +11,5 @@ import { PokemonDetails } from '@core/models/';
   styleUrl: './pokemon-info.scss'
 })
 export class PokemonInfo {
-  public pokemon = input.required<PokemonDetails>();
+  protected readonly pokemon = input.required<PokemonDetails>();
 }

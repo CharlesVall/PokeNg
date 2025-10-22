@@ -1,10 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { PokeapiRepository } from '../pokeapi-repository/pokeapi-repository';
-import { PokemonDetails } from '@core/models/PokemonDetails';
-import { map, Observable } from 'rxjs';
-import { PokemonWithUrlDto } from '@core/models/interfaces/PokemonWithUrlDto';
-import { PokemonRow } from '@core/models/PokemonRow';
-import { PokemonId } from '@core/models/PokemonId';
+import { PokemonDetails } from '@core/models/pokemon-details';
+import { map, Observable } from 'rxjs'
+import { PokemonRow } from '@core/models/pokemon-row';
+import { PokemonId } from '@core/models/pokemon-id';
 
 @Injectable({
   providedIn: 'root'
@@ -13,25 +12,21 @@ export class PokemonService {
 
   private readonly pokeapiRepository = inject(PokeapiRepository);
 
-  getAllPokemonUrls(): Observable<PokemonWithUrlDto[]> {
-    return this.pokeapiRepository.getAllPokemonUrls()
-  }
-
   getPokemonDetailsById(pokemonId: PokemonId): Observable<PokemonDetails> {
     return this.pokeapiRepository.getPokemonDetailsById(pokemonId).pipe(
-      map(dto => PokemonDetails.fromDto(dto))
+      map(data => PokemonDetails.fromDto(data))
     )
   }
   
   getAllPokemonRows(): Observable<PokemonRow[]> {
     return this.pokeapiRepository.getAllPokemonRows().pipe(
-      map(dtos => dtos.map(dto => PokemonRow.fromDto(dto)))
+      map(pokemonListData => pokemonListData.map(data => PokemonRow.fromDto(data)))
     );
   }
 
   getPokemonRowById(pokemonId: PokemonId): Observable<PokemonRow | undefined> {
     return this.pokeapiRepository.getPokemonRowById(pokemonId).pipe(
-      map(dto => PokemonRow.fromDto(dto))
+      map(data => PokemonRow.fromDto(data))
     )
   }
 }
