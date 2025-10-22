@@ -1,3 +1,5 @@
+@use 'variables.scss' as *;
+
 .pokedex {
   margin: auto;
   max-width: 90%;
@@ -7,7 +9,7 @@
     flex-direction: column;
     border-radius: 1rem;
     .pokedex__frame-list {
-      border: 1px solid #3f3f46;
+      border: 1px solid $frame-border-color;
       border-radius: 1rem;
       padding: 1.5rem;
     }

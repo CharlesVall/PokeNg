@@ -1,5 +1,5 @@
 import { Component, computed, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { ButtonModule } from "primeng/button";
 import { PokemonPageState } from '../page-state/pokemon-page-state';
 import { PokemonService } from '@core/services/pokemon-service/pokemon.service';
@@ -9,14 +9,13 @@ import { PokemonId } from '@core/models/PokemonId';
 
 @Component({
   selector: 'app-forward-back-buttons-layout',
-  imports: [ButtonModule],
+  imports: [ButtonModule, RouterLink],
   templateUrl: './forward-back-buttons-layout.html',
   styleUrl: './forward-back-buttons-layout.scss'
 })
 export class ForwardBackButtonsLayout {
   private pokemonPageState = inject(PokemonPageState);
   private pokemonService = inject(PokemonService);
-  private router = inject(Router);
 
   public currentPokemon = computed(() => this.pokemonPageState.currentPokemon());
   
@@ -45,26 +44,4 @@ export class ForwardBackButtonsLayout {
     ),
     { initialValue: null }
   );
-
-  public goToPreviousPokemon(): void {
-    const currentPokemon = this.currentPokemon();
-    
-    if (!currentPokemon) return;
-    
-    const previousId = currentPokemon.id.previous()
-    
-    this.pokemonPageState.loadPokemon(previousId);
-    this.router.navigate(['/pokemon', previousId.value]);
-  }
-
-  public goToNextPokemon(): void {
-    const currentPokemon = this.currentPokemon();
-    
-    if (!currentPokemon) return;
-    
-    const nextId = currentPokemon.id.next()
-    
-    this.pokemonPageState.loadPokemon(nextId);
-    this.router.navigate(['/pokemon', nextId]);
-  }
 }

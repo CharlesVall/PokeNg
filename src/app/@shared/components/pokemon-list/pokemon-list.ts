@@ -1,5 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { TableModule } from 'primeng/table';
@@ -16,7 +16,7 @@ import { PokemonId } from '@core/models/PokemonId';
   templateUrl: './pokemon-list.html',
   styleUrl: './pokemon-list.scss'
 })
-export class PokemonList {
+export class PokemonList implements OnInit {
   private pokemonService = inject(PokemonService);
   private router = inject(Router)
 
@@ -24,5 +24,13 @@ export class PokemonList {
   
   public traveToPokemonDetailsPage(pokemonId: PokemonId) {
     this.router.navigate(['/pokemon', pokemonId.value]);
+  }
+
+  ngOnInit(): void {
+    const input = document.querySelectorAll("input")
+    if (input) {
+      console.log(input)
+      input.forEach(input => input.style.width = "100%")
+    }
   }
 }

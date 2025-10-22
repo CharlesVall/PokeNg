@@ -1,4 +1,23 @@
 <div>
+  <a [routerLink]="`/pokemon/${previousPokemon()?.id}`">
+    <p-button>
+      <i class="pi pi-arrow-left"></i>
+      {{ previousPokemon()?.id }}
+      <img [src]="previousPokemon()?.sprites?.front_default"/>
+    </p-button>
+  </a>
+  <a [routerLink]="`/pokemon/${nextPokemon()?.id}`">
+    <p-button>
+      <img [src]="nextPokemon()?.sprites?.front_default"/>
+      {{ nextPokemon()?.id }}
+      <i class="pi pi-arrow-right"></i>
+    </p-button>
+  </a>
+</div>
+
+<!--
+
+<div>
   <p-button (click)="goToPreviousPokemon()">
     <i class="pi pi-arrow-left"></i>
     {{ previousPokemon()?.id }}
@@ -10,3 +29,6 @@
     <i class="pi pi-arrow-right"></i>
   </p-button>
 </div>
+
+
+-->

@@ -1,11 +1,11 @@
 <p-table [value]="(pokemonDetails$ | async) || []" [scrollable]="true" scrollHeight="75vh">
   <ng-template #header>
     <tr class="pokemon-list__header">
-      <th>Index</th>
-      <th>Image</th>
-      <th>Name</th>
-      <th>Types</th>
-      <th>Abilities</th>
+      <th style="width:8%">Index</th>
+      <th style="width:14%">Image</th>
+      <th style="width:22%">Name</th>
+      <th style="width:14%">Types</th>
+      <th style="width:42%">Abilities</th>
     </tr>
   </ng-template>
   <ng-template #body let-pokemon>
@@ -24,22 +24,41 @@
   <ng-template #emptymessage>
     @for (skeleton of [].constructor(10); track $index) {
       <tr class="pokemon-row__skeleton">
-        <td class="skeleton-index">
+        <td style="width:8%" >
           <p-skeleton width="80%"/>
         </td>
-        <td class="skeleton-image">
+        <td style="width:14%">
           <p-skeleton width="7rem" height="7rem"/>
         </td>
-        <td class="skeleton-name">
+        <td style="width: 22%" >
           <p-skeleton width="100%" height="1.3rem"/>
         </td>
-        <td class="skeleton-types">
+        <td class="skeleton-types" style="width:14%">
           <p-skeleton width="7rem" height="2rem" />
         </td>
-        <td>
+        <td style="width:42%">
           <p-skeleton width="100%" height="1.3rem"/>
         </td>
       </tr>
     }
   </ng-template>
 </p-table>
+
+<!--
+ <tr>
+      <th>
+        <p-columnFilter type="text" field="id" placeholder="Id" ariaLabel="Filter Id" filterOn="input" />
+      </th>
+      <th style="width:14%">
+      </th>
+      <th style="width:22%">
+        <p-columnFilter type="text" field="name" placeholder="Search name" ariaLabel="Filter Name" filterOn="input" style="width:22%"/>
+      </th>
+      <th style="width:14%">
+        <p-columnFilter type="text" field="id" placeholder="Search by id" ariaLabel="Filter Id" filterOn="input" style="width:14%"/>
+      </th>
+      <th style="width:42%">
+        <p-columnFilter type="text" field="id" placeholder="Search by id" ariaLabel="Filter Id" filterOn="input" style="width:42%"/>
+      </th>
+    </tr>
+-->
