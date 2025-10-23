@@ -5,9 +5,7 @@ import { PokemonService } from '@core/services/pokemon-service/pokemon.service';
 import { PokemonDetails } from '@core/models/';
 import { PokemonId } from '@core/models/pokemon-id';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class PokemonPageState {
   private readonly pokemonService = inject(PokemonService);
 

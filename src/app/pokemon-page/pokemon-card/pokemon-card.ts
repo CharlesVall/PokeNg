@@ -14,5 +14,5 @@ import { PokemonInfo } from "./pokemon-info/pokemon-info";
   styleUrl: './pokemon-card.scss'
 })
 export class PokemonCard {
-  protected readonly pokemon = input.required<PokemonDetails>({ alias: 'pokemon' });
+  public readonly pokemon = input.required<PokemonDetails>({ alias: 'pokemon' });
 }

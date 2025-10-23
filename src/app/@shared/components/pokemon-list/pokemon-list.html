@@ -9,15 +9,16 @@
     </tr>
     <tr class="pokemon-list__filter-row">
       <th style="width:8%">
-        <input class="search-id" placeholder="id">
+        <input-filter class="search-id" placeholder="id" filterValue="" />
       </th>
-      <th style="width:14%"></th>
+      <th style="width:14%">
+      </th>
       <th style="width:22%">
-        <input class="search-name" placeholder="Search name">
+        <input-filter class="search-name" placeholder="Search name" />
       </th>
       <th style="width:14%">Types</th>
       <th style="width:42%">
-        <input class="search-ability" placeholder="Search ability">
+        <input-filter class="search-ability" placeholder="Search ability" />
       </th>
     </tr>
   </ng-template>
@@ -56,22 +57,3 @@
     }
   </ng-template>
 </p-table>
-
-<!--
- <tr>
-      <th>
-        <p-columnFilter type="text" field="id" placeholder="Id" ariaLabel="Filter Id" filterOn="input" />
-      </th>
-      <th style="width:14%">
-      </th>
-      <th style="width:22%">
-        <p-columnFilter type="text" field="name" placeholder="Search name" ariaLabel="Filter Name" filterOn="input" style="width:22%"/>
-      </th>
-      <th style="width:14%">
-        <p-columnFilter type="text" field="id" placeholder="Search by id" ariaLabel="Filter Id" filterOn="input" style="width:14%"/>
-      </th>
-      <th style="width:42%">
-        <p-columnFilter type="text" field="id" placeholder="Search by id" ariaLabel="Filter Id" filterOn="input" style="width:42%"/>
-      </th>
-    </tr>
--->

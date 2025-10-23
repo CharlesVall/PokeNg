@@ -1,18 +1,19 @@
+@use 'variables.scss' as *;
+
 .pokemon-list__filter-row {
   input {
     width: 100%;
-    border-color: var(--p-inputtext-focus-border-color);
-    box-shadow: var(--p-inputtext-focus-ring-shadow);
-    outline: var(--p-inputtext-focus-ring-width) var(--p-inputtext-focus-ring-style) var(--p-inputtext-focus-ring-color);
-    outline-offset: var(--p-inputtext-focus-ring-offset);
+    padding: 0.4rem;
+    padding-left: 0.6rem;
     font-size: 1rem;
     color: var(--p-inputtext-color);
-    background: var(--p-inputtext-background);
-    padding-block: var(--p-inputtext-padding-y);
-    padding-inline: var(--p-inputtext-padding-x);
-    border: 1px solid var(--p-inputtext-border-color);
-    appearance: none;
-    border-radius: var(--p-inputtext-border-radius);
+    background-color: var(--p-inputtext-background-color);
+    border: 1px solid $frame-border-color;
+    border-radius: var(--p-card-border-radius);
+    outline-color: transparent;
+    &:focus {
+      outline: 1px solid var(--p-button-primary-background);
+    }
   }
   .search-id {
     width: 100%;

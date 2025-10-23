@@ -10,9 +10,10 @@ import { PokemonDetailsData } from '@core/models/';
   providedIn: 'root'
 })
 export class PokeapiRepository {
-  private http = inject(HttpClient);
-  private allPokemonsCache$?: Observable<PokemonRowData[]>;
+  private readonly http = inject(HttpClient);
+  
   private readonly pokeapiUrl = 'https://pokeapi.co/api/v2/'
+  private allPokemonsCache$?: Observable<PokemonRowData[]>;
 
   public getPokemonDetailsById(pokemonId: PokemonId): Observable<PokemonDetailsData> {
     return this.http.get<PokemonDetailsData>(`${this.pokeapiUrl}/pokemon/${pokemonId.value}`)

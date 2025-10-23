@@ -9,22 +9,21 @@ import { PokemonId } from '@core/models/pokemon-id';
   providedIn: 'root'
 })
 export class PokemonService {
-
   private readonly pokeapiRepository = inject(PokeapiRepository);
 
-  getPokemonDetailsById(pokemonId: PokemonId): Observable<PokemonDetails> {
+  public getPokemonDetailsById(pokemonId: PokemonId): Observable<PokemonDetails> {
     return this.pokeapiRepository.getPokemonDetailsById(pokemonId).pipe(
       map(data => PokemonDetails.fromDto(data))
     )
   }
   
-  getAllPokemonRows(): Observable<PokemonRow[]> {
+  public getAllPokemonRows(): Observable<PokemonRow[]> {
     return this.pokeapiRepository.getAllPokemonRows().pipe(
       map(pokemonListData => pokemonListData.map(data => PokemonRow.fromDto(data)))
     );
   }
 
-  getPokemonRowById(pokemonId: PokemonId): Observable<PokemonRow | undefined> {
+  public getPokemonRowById(pokemonId: PokemonId): Observable<PokemonRow | undefined> {
     return this.pokeapiRepository.getPokemonRowById(pokemonId).pipe(
       map(data => PokemonRow.fromDto(data))
     )

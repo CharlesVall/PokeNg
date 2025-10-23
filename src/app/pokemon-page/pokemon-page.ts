@@ -13,12 +13,13 @@ import { PokemonId } from '@core/models/';
   selector: 'app-pokemon-page',
   imports: [ButtonModule, SkeletonModule, ForwardBackButtonsLayout, PokemonCard],
   templateUrl: './pokemon-page.html',
-  styleUrl: './pokemon-page.scss'
+  styleUrl: './pokemon-page.scss',
+  providers: [PokemonPageState]
 })
 export class PokemonPage {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
-  protected readonly pokemonPageState = inject(PokemonPageState);
+  public readonly pokemonPageState = inject(PokemonPageState);
 
   private readonly routeParams = toSignal(this.route.params);
   protected pokemonId = computed(() => Number(this.routeParams()?.['id'] ?? 0));
