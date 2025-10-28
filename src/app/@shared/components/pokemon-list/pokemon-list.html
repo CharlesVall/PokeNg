@@ -1,4 +1,4 @@
-<p-table [value]="(pokemonDetails$ | async) || []" [scrollable]="true" scrollHeight="75vh">
+<p-table [value]="(pokemonRowData$ | async) || []" [scrollable]="true" scrollHeight="75vh">
   <ng-template #header>
     <tr class="pokemon-list__header">
       <th style="width:8%">Index</th>
@@ -9,16 +9,17 @@
     </tr>
     <tr class="pokemon-list__filter-row">
       <th style="width:8%">
-        <input-filter class="search-id" placeholder="id" filterValue="" />
+        <input-filter class="search-id" placeholder="id" filterValue="" [formControl]="filterStateService.idControl" />
       </th>
       <th style="width:14%">
       </th>
       <th style="width:22%">
-        <input-filter class="search-name" placeholder="Search name" />
+        <input-filter class="search-name" placeholder="Search name" [formControl]="filterStateService.nameControl" />
       </th>
-      <th style="width:14%">Types</th>
+      <th style="width:14%">
+      </th>
       <th style="width:42%">
-        <input-filter class="search-ability" placeholder="Search ability" />
+        <input-filter class="search-ability" placeholder="Search ability" [formControl]="filterStateService.abilitiesControl" />
       </th>
     </tr>
   </ng-template>

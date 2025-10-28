@@ -11,6 +11,8 @@ export * from './pokemon-row'
 export * from './interfaces/pokemon-stat'
 export * from './pokemon-details'
 
+export * from './interfaces/filter-criteria'
+
 
 
 import { PokemonRowData } from './interfaces/pokemon-row-data'
@@ -25,3 +27,5 @@ import { PokemonRow } from './pokemon-row';
 
 import { Stat, Stat2 } from './interfaces/pokemon-stat';
 import { PokemonDetails } from './pokemon-details';
+
+import { FilterCriteria } from './interfaces/filter-criteria'

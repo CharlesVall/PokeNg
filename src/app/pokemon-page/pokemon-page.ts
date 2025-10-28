@@ -27,10 +27,11 @@ export class PokemonPage {
   public constructor() {
     effect(() => {
       const id = this.pokemonId();
-      if (id > 0) {
+      if (PokemonId.isValid(id)) {
         this.pokemonPageState.loadPokemon(new PokemonId(id));
       } else {
         this.pokemonPageState.clearPokemon();
+        this.router.navigateByUrl('page-not-found');
       }
     });
   }

@@ -2,9 +2,9 @@ export class PokemonId {
   public static readonly MIN_POKEMON_ID: number = 1;
   public static readonly MAX_POKEMON_ID: number = 1025;
 
-  readonly value: number;
+  public readonly value: number;
 
-  constructor(pokemonId: number) {
+  public constructor(pokemonId: number) {
     if (!PokemonId.isValid(pokemonId)) {
       throw new Error(
         `Invalid Pokemon ID: ${pokemonId}. Must be between ${PokemonId.MIN_POKEMON_ID} and ${PokemonId.MAX_POKEMON_ID}.`
@@ -13,7 +13,7 @@ export class PokemonId {
     this.value = pokemonId;
   }
 
-  private static isValid(id: number): boolean {
+  public static isValid(id: number): boolean {
     return id >= this.MIN_POKEMON_ID && id <= this.MAX_POKEMON_ID;
   }
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 @Component({
   selector: 'app-pokemon-home',
@@ -7,5 +7,4 @@ import { Component } from '@angular/core';
   styleUrl: './pokemon-home.scss'
 })
 export class PokemonHome {
-
 }

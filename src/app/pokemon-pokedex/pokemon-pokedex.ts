@@ -8,5 +8,4 @@ import { PokemonList } from '@shared/components/pokemon-list/pokemon-list';
   styleUrl: './pokemon-pokedex.scss'
 })
 export class PokemonPokedex {
-
 }
