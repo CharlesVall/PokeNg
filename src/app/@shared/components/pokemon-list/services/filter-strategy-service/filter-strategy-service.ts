@@ -9,7 +9,8 @@ export class FilterStrategyService {
     return pokemons
       .filter(pokemon => this.matchesId(pokemon, criteria.id))
       .filter(pokemon => this.matchesName(pokemon, criteria.name))
-      .filter(pokemon => this.matchesAbilities(pokemon, criteria.abilities));
+      .filter(pokemon => this.matchesAbilities(pokemon, criteria.abilities))
+      .filter(pokemon => this.matchesTypes(pokemon, criteria.types))
   }
 
   private matchesId(pokemon: PokemonRow, id: string): boolean {
@@ -39,4 +40,17 @@ export class FilterStrategyService {
       abilityObject.ability.name.toLowerCase().includes(searchTerm)
     );
   } 
+
+  private matchesTypes(pokemon: PokemonRow, types: string[]): boolean {
+    if (!types || types.length === 0) {
+      return true
+    }
+    const pokemonTypes = new Set(pokemon.types.map(typeObject => typeObject.type.name));
+    const filterTypes = new Set(types);
+
+    const areSetSame =
+      pokemonTypes.size === filterTypes.size &&
+      [...pokemonTypes].every(type => filterTypes.has(type));
+    return areSetSame
+  }
 }

@@ -5,9 +5,9 @@ import { Ability } from '@core/models/';
   name: 'displayAbilities'
 })
 export class DisplayAbilitiesPipe implements PipeTransform {
-  public transform(abilitiesObject: Ability[], returnArray: boolean = false): string | string[] {
+  public transform(abilitiesObject: Ability[]): string[] {
     if (!abilitiesObject || !Array.isArray(abilitiesObject)) {
-      return '';
+      return [''];
     }
 
     const abilityList = abilitiesObject.map(ability => {
@@ -15,6 +15,6 @@ export class DisplayAbilitiesPipe implements PipeTransform {
       return name.charAt(0).toUpperCase() + name.slice(1);
     });
 
-    return returnArray ? abilityList.join(', ') : abilityList;
+    return abilityList;
   }
 }

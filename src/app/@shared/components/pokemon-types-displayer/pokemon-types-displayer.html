@@ -1,7 +1,10 @@
 <div class="pokemon-type-displayer">
   @for (type of types(); track type) {
-    <div class="type-icon" [class]="type">
+    <div class="type-icon" [class]="type" [pTooltip]="tooltipContent" tooltipPosition="top">
       <img [src]="`/typesSVG/${type}.svg`">
+      <ng-template #tooltipContent>
+        {{type}}
+      </ng-template>
     </div>
   }
 </div>

@@ -1,8 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-pokemon-home',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './pokemon-home.html',
   styleUrl: './pokemon-home.scss'
 })

@@ -4,12 +4,7 @@
     align-items: center;
     gap: 1rem;
   }
-  .pokemon-card__abilities-list {
+  .pokemon-card__abilities {
     display: flex;
-    ul {
-      padding-left: 1rem;
-      margin: 0;
-      list-style: none;
-    }
   }
 }

@@ -1,35 +1,29 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable, catchError, map, of, shareReplay, throwError } from 'rxjs';
+import { Observable, map, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 import { PokemonRowData } from '@core/models/';
 import { PokemonId } from '@core/models/';
 import { PokemonDetailsData } from '@core/models/';
+import { API_URL } from '@core/tokens/api-url.token';
+import { hardCache } from '@paddls/rxjs-common';
+
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class PokeapiRepository {
+export class PokemonRepository {
   private readonly http = inject(HttpClient);
-  
-  private readonly pokeapiUrl = 'https://pokeapi.co/api/v2/'
-  private allPokemonsCache$?: Observable<PokemonRowData[]>;
+  private readonly apiUrl = inject(API_URL)  
 
   public getPokemonDetailsById(pokemonId: PokemonId): Observable<PokemonDetailsData> {
-    return this.http.get<PokemonDetailsData>(`${this.pokeapiUrl}/pokemon/${pokemonId.value}`)
+    return this.http.get<PokemonDetailsData>(`${this.apiUrl}/pokemon/${pokemonId.value}`)
   }
 
   public getAllPokemonRows(): Observable<PokemonRowData[]> {
-    if (!this.allPokemonsCache$) {
-      this.allPokemonsCache$ = this.http.get<PokemonRowData[]>('pokemon-data.json').pipe(
-        shareReplay(1),
-        catchError(err => {
-          this.allPokemonsCache$ = of([]);
-          return throwError(() => err);
-        })
-      )
-    }
-    return this.allPokemonsCache$
+    return this.http.get<PokemonRowData[]>('pokemon-data.json').pipe(
+      hardCache()
+    )
   }
 
   public getPokemonRowById(pokemonId: PokemonId): Observable<PokemonRowData> {

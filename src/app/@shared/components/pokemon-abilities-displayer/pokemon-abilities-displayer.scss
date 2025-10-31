@@ -1,0 +1,16 @@
+.pokemon-abilities-displayer {
+  span:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .abilities-displayer__inline {
+    display: flex;
+  }
+  .abilities-displayer__list{
+    display: flex;
+    flex-direction: column;
+    padding-left: 1rem;
+    margin: 0;
+    list-style: none;
+  }
+}

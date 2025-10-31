@@ -7,11 +7,11 @@ export * from './interfaces/pokemon-sprites'
 
 export * from './pokemon-id'
 export * from './pokemon-row'
-
-export * from './interfaces/pokemon-stat'
 export * from './pokemon-details'
 
+export * from './interfaces/pokemon-stat'
 export * from './interfaces/filter-criteria'
+export * from './interfaces/ability-details'
 
 
 
@@ -24,8 +24,8 @@ import { Sprites } from './interfaces/pokemon-sprites'
 
 import { PokemonId } from './pokemon-id'
 import { PokemonRow } from './pokemon-row';
-
-import { Stat, Stat2 } from './interfaces/pokemon-stat';
 import { PokemonDetails } from './pokemon-details';
 
+import { Stat, Stat2 } from './interfaces/pokemon-stat';
 import { FilterCriteria } from './interfaces/filter-criteria'
+import { AbilityDetails } from './interfaces/ability-details'

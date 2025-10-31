@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PokeapiWrapper } from './pokeapi-wrapper';
+import { AbilitiesService } from './abilities-service';
 
-describe('PokeapiWrapper', () => {
-  let service: PokeapiWrapper;
+describe('AbilitiesService', () => {
+  let service: AbilitiesService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(PokeapiWrapper);
+    service = TestBed.inject(AbilitiesService);
   });
 
   it('should be created', () => {

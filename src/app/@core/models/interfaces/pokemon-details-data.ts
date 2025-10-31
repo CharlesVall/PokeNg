@@ -1,3 +1,4 @@
+import { Generation, VersionGroup } from './pokemon-misc'
 import { PokemonType } from './pokemon-type'
 import { Sprites } from './pokemon-sprites'
 import { Ability } from './pokemon-ability'
@@ -68,11 +69,6 @@ export interface MoveLearnMethod {
   url: string
 }
 
-export interface VersionGroup {
-  name: string
-  url: string
-}
-
 export interface PastAbility {
   abilities: Ability3[]
   generation: Generation
@@ -82,11 +78,6 @@ export interface Ability3 {
   ability: any
   is_hidden: boolean
   slot: number
-}
-
-export interface Generation {
-  name: string
-  url: string
 }
 
 export interface Species {

@@ -1,60 +1,116 @@
 <p-table [value]="(pokemonRowData$ | async) || []" [scrollable]="true" scrollHeight="75vh">
   <ng-template #header>
-    <tr class="pokemon-list__header">
-      <th style="width:8%">Index</th>
-      <th style="width:14%">Image</th>
-      <th style="width:22%">Name</th>
-      <th style="width:14%">Types</th>
-      <th style="width:42%">Abilities</th>
-    </tr>
-    <tr class="pokemon-list__filter-row">
-      <th style="width:8%">
-        <input-filter class="search-id" placeholder="id" filterValue="" [formControl]="filterStateService.idControl" />
-      </th>
-      <th style="width:14%">
-      </th>
-      <th style="width:22%">
-        <input-filter class="search-name" placeholder="Search name" [formControl]="filterStateService.nameControl" />
-      </th>
-      <th style="width:14%">
-      </th>
-      <th style="width:42%">
-        <input-filter class="search-ability" placeholder="Search ability" [formControl]="filterStateService.abilitiesControl" />
-      </th>
-    </tr>
+    <ng-container *ngTemplateOutlet="headerRow" />
+    <ng-container *ngTemplateOutlet="filterRow" />
   </ng-template>
+
   <ng-template #body let-pokemon>
-    <tr class="pokemon-list__row" (click)="traveToPokemonDetailsPage(pokemon.id)">
-      <td>{{ pokemon.id }}</td>  
-      @if (pokemon.id == 1) {
-        <td><img ngSrc="{{ pokemon.sprites.front_default }}" width="96" height="96" priority></td>
-      } @else {
-        <td><img ngSrc="{{ pokemon.sprites.front_default }}" width="96" height="96"></td>
-      }
-      <td>{{ pokemon.name | titlecase  }}</td>
-      <td><app-pokemon-types-displayer [types]="pokemon.types | displayTypes" /></td>
-      <td>{{ pokemon.abilities | displayAbilities:true }}</td>
-    </tr>
+    <ng-container *ngTemplateOutlet="pokemonRow; context: { pokemon: pokemon }" />
   </ng-template>
+  
   <ng-template #emptymessage>
-    @for (skeleton of [].constructor(10); track $index) {
-      <tr class="pokemon-list__skeleton">
-        <td style="width:8%" >
-          <p-skeleton width="80%"/>
-        </td>
-        <td style="width:14%">
-          <p-skeleton width="7rem" height="7rem"/>
-        </td>
-        <td style="width: 22%" >
-          <p-skeleton width="100%" height="1.3rem"/>
-        </td>
-        <td class="skeleton-types" style="width:14%">
-          <p-skeleton width="7rem" height="2rem" />
-        </td>
-        <td style="width:42%">
-          <p-skeleton width="100%" height="1.3rem"/>
-        </td>
-      </tr>
-    }
+    <ng-container *ngTemplateOutlet="skeletonRows" />
   </ng-template>
 </p-table>
+
+<!-- Header Row Template -->
+<ng-template #headerRow>
+  <tr class="pokemon-list__header">
+    <th style="width:8%">Index</th>
+    <th style="width:14%">Image</th>
+    <th style="width:22%">Name</th>
+    <th style="width:14%">Types</th>
+    <th style="width:42%">Abilities</th>
+  </tr>
+</ng-template>
+
+<!-- Filter Row Template -->
+<ng-template #filterRow>
+  <tr class="pokemon-list__filter-row">
+    <th style="width:8%">
+      <input pInputText
+        class="search-id" 
+        placeholder="id" 
+        filterValue="" 
+        [formControl]="filterStateService.idControl" 
+        fluid
+      />
+    </th>
+    <th style="width:14%"></th>
+    <th style="width:19%">
+      <input pInputText
+        class="search-name" 
+        placeholder="Search name"
+        [formControl]="filterStateService.nameControl" 
+        fluid
+      />
+    </th>
+    <th style="width:21%">
+      <p-multiselect
+        [options]="filterStateService.typesOptions"
+        [formControl]="filterStateService.typesControl"
+        [maxSelectedLabels]="2"
+        placeholder="Search types" 
+        fluid
+      />
+    </th>
+    <th style="width:38%">
+      <input pInputText
+        class="search-ability" 
+        placeholder="Search ability" 
+        [formControl]="filterStateService.abilitiesControl" 
+        fluid
+      />
+    </th>
+  </tr>
+</ng-template>
+
+<!-- Pokemon Row Template -->
+<ng-template #pokemonRow let-pokemon="pokemon">
+  <tr class="pokemon-list__row" (click)="traveToPokemonDetailsPage(pokemon.id)">
+    <td>{{ pokemon.id }}</td>
+    <td>
+      <ng-container *ngTemplateOutlet="pokemonImage; context: { pokemon: pokemon }" />
+    </td>
+    <td>{{ pokemon.name | titlecase }}</td>
+    <td>
+      <app-pokemon-types-displayer [types]="pokemon.types | displayTypes" />
+    </td>
+    <td><app-pokemon-abilities-displayer [abilities]="pokemon.abilities | displayAbilities"/></td>
+    <!--
+    {{ pokemon.abilities | displayAbilities:true }}
+    -->
+  </tr>
+</ng-template>
+
+<!-- Pokemon Image Template -->
+<ng-template #pokemonImage let-pokemon="pokemon">
+  @if (pokemon.id == 1) {
+    <img [ngSrc]="pokemon.sprites.front_default" width="96" height="96" priority>
+  } @else {
+    <img [ngSrc]="pokemon.sprites.front_default" width="96" height="96">
+  }
+</ng-template>
+
+<!-- Skeleton Rows Template -->
+<ng-template #skeletonRows>
+  @for (skeleton of [].constructor(10); track $index) {
+    <tr class="pokemon-list__skeleton">
+      <td style="width:8%">
+        <p-skeleton width="80%" />
+      </td>
+      <td style="width:14%">
+        <p-skeleton width="7rem" height="7rem" />
+      </td>
+      <td style="width:20%">
+        <p-skeleton width="100%" height="1.3rem" />
+      </td>
+      <td class="skeleton-types" style="width:20%">
+        <p-skeleton width="100%" height="2rem" />
+      </td>
+      <td style="width:38%">
+        <p-skeleton width="100%" height="1.3rem" />
+      </td>
+    </tr>
+  }
+</ng-template>

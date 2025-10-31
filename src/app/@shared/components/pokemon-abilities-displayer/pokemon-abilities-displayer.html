@@ -1,0 +1,46 @@
+<div class="pokemon-abilities-displayer">
+  @let list = abilities();
+
+  @if (!displayAsList()) {
+    <div class="abilities-displayer__inline">
+
+      @for (ability of list; track $index) {
+          <span [pTooltip]="tooltipContent" tooltipPosition="bottom">
+            {{ ability }}@if ($index < list.length - 1) {,&nbsp;}
+          </span>
+          <ng-template #tooltipContent>
+            <h3>{{ ability }}</h3>
+            <app-ability-description [abilityName]="ability" />
+          </ng-template>
+      }
+    </div>
+  } @else {
+    <ul class="abilities-displayer__list">
+      @for (ability of (abilities()); track $index) {
+        <li>
+          <span [pTooltip]="tooltipContent" tooltipPosition="bottom">
+            {{ ability }}@if ($index < list.length - 1) {, }
+          </span>
+          <ng-template #tooltipContent>
+            <h3>{{ ability }}</h3>
+            <app-ability-description [abilityName]="ability" />
+          </ng-template>
+        </li>
+      }
+    </ul>
+  }
+</div>
+<!--
+@for (ability of list; track $index) {
+          <span [pTooltip]="tooltipContent" tooltipPosition="top">
+            {{ ability }}{{ $index < list.length - 1 ? ', ' : '' }}
+          </span>
+          <ng-template #tooltipContent>
+            <h3>{{ ability }}</h3>
+
+            <p>{{ abilitiesService.getMoveDescriptionByName(ability) | async }}</p>
+          </ng-template>
+      }
+
+
+-->

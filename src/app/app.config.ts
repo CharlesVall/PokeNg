@@ -2,12 +2,11 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChang
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideHttpClient } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
-import { provideNgxRepository } from '@paddls/ngx-repository';
-import { provideNgxHttpRepository } from '@paddls/ngx-http-repository';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
 
 import { routes } from './app.routes';
+import { API_URL } from '@core/tokens/api-url.token';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -24,16 +23,6 @@ export const appConfig: ApplicationConfig = {
           }
         }
     }),
-    provideNgxRepository({
-      normalizerConfiguration: {
-        denormalizeNull: true,
-        normalizeNull: false,
-        denormalizeUndefined: true,
-        normalizeUndefined: false
-      }
-    }),
-    provideNgxHttpRepository({
-      debug: true
-    })
+    {provide: API_URL, useValue: 'https://pokeapi.co/api/v2'}
   ]
 };

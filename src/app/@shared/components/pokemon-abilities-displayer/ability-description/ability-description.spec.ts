@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InputFilter } from './input-filter';
+import { AbilityDescription } from './ability-description';
 
-describe('InputFilter', () => {
-  let component: InputFilter;
-  let fixture: ComponentFixture<InputFilter>;
+describe('AbilityDescription', () => {
+  let component: AbilityDescription;
+  let fixture: ComponentFixture<AbilityDescription>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [InputFilter]
+      imports: [AbilityDescription]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(InputFilter);
+    fixture = TestBed.createComponent(AbilityDescription);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

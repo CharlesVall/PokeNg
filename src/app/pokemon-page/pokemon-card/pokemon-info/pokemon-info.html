@@ -4,11 +4,7 @@
     <strong>Types:</strong>
     <app-pokemon-types-displayer [types]="pokemon().types | displayTypes" />
   </p>
-  <div class="pokemon-card__abilities-list"><strong>Abilities:</strong>
-    <ul>
-      @for (ability of (pokemon().abilities | displayAbilities); track $index) {
-        <li>{{ ability }}</li>
-      }
-    </ul>
+  <div class="pokemon-card__abilities"><strong>Abilities:</strong>
+    <app-pokemon-abilities-displayer [abilities]="pokemon().abilities | displayAbilities" [displayAsList]="true" />
   </div>
 </div>
