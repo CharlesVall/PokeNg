@@ -1,22 +1,35 @@
 <div class="sidebar-buttons">
-  <a routerLink="">
-    <p-button class="sidebar__button">
-      <i class="pi pi-home"></i>
-    </p-button>
+  <a 
+    routerLink=""
+    routerLinkActive="active-link" 
+    [routerLinkActiveOptions]="{ exact: true }"
+    pTooltip="home">    
+    <button pButton pRipple>
+      <i class="pi pi-home sidebar__icon"></i>
+    </button>
   </a>
-  <a routerLink="/pokedex">
-    <p-button class="sidebar__button">
-      <i class="pi pi-list"></i>
-    </p-button>
+  <a
+    routerLink="/pokemon"
+    routerLinkActive="active-link"
+    pTooltip="pokedex">
+    <button pButton pRipple class="p-button--active">
+      <i class="pi pi-list sidebar__icon"></i>
+    </button>
   </a>
-  <a routerLink="/compare">
-    <p-button class="sidebar__button">
-      <i class="pi pi-search"></i>
-    </p-button>
+  <a 
+    routerLink="/compare"
+    routerLinkActive="active-link"
+    pTooltip="compare">
+    <button pButton pRipple>
+      <i class="pi pi-search sidebar__icon"></i>
+    </button>
   </a>
-  <a [routerLink]="['..']">
-    <p-button class="sidebar__button">
-      <i class="pi pi-arrow-left"></i>
-    </p-button>
+  <a 
+    [routerLink]="['..']"
+    pTooltip="return"
+  >
+    <button pButton pRipple>
+      <i class="pi pi-arrow-left sidebar__icon"></i>
+    </button>
   </a>
 </div>

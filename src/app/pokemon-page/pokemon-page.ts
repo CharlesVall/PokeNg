@@ -1,5 +1,5 @@
 import { Component, computed, effect, inject, signal } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ButtonModule } from 'primeng/button';
 import { SkeletonModule } from 'primeng/skeleton';
@@ -8,10 +8,15 @@ import { ForwardBackButtonsLayout } from "./forward-back-buttons-layout/forward-
 import { PokemonPageState } from './page-state/pokemon-page-state';
 import { PokemonCard } from './pokemon-card/pokemon-card';
 import { PokemonId } from '@core/models/';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-pokemon-page',
-  imports: [ButtonModule, SkeletonModule, ForwardBackButtonsLayout, PokemonCard],
+  imports: [
+    CommonModule, ButtonModule, SkeletonModule,
+    ForwardBackButtonsLayout, PokemonCard,
+    RouterLink
+],
   templateUrl: './pokemon-page.html',
   styleUrl: './pokemon-page.scss',
   providers: [PokemonPageState]

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AbilitiesRepository } from './abilities-repository';
+import { EvolutionRepository } from './evolution-repository';
 
-describe('AbilitiesRepository', () => {
-  let service: AbilitiesRepository;
+describe('EvolutionRepository', () => {
+  let service: EvolutionRepository;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(AbilitiesRepository);
+    service = TestBed.inject(EvolutionRepository);
   });
 
   it('should be created', () => {

@@ -1,15 +1,46 @@
+@use 'variables.scss' as *;
+
 .sidebar-buttons {
   gap: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+
   a {
+    display: flex;
+    justify-content: center;
     text-decoration: none;
-    .sidebar__button {
+
+    .p-button {
       height: 2.625rem;
-      display: flex;
-      justify-content: center;
+      background-color: transparent;
+      border-color: transparent;
+
+      .sidebar__icon {
+        color: $frame-border-color;
+        transition: color 0.2s ease;
+      }
+
+      &:hover {
+        border-color: var(--p-content-hover-background);
+        background-color: var(--p-content-hover-background);
+
+        .sidebar__icon {
+          color: white;
+        }
+      }
     }
+
+    // ✅ l'état actif appliqué quand <a> a la classe active-link
+    &.active-link .p-button {
+      border-color: $app-color;
+      background-color: $app-color;
+
+      .sidebar__icon {
+        color: black;
+      }
+    }
+
     .sidebar__version {
       margin: 0;
       display: flex;

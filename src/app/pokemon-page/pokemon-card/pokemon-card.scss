@@ -2,12 +2,11 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  max-width: 60rem;
   margin: auto;
   transition: 0.5s ease;
   .pokemon-card__main {
     display: flex;
-    gap: 3rem;
+    gap: 8rem;
     flex-wrap: wrap;
   }
   .pokemon-card__image-info {

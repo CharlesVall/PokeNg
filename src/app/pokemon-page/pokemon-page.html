@@ -1,5 +1,7 @@
 <div class="pokemon-page">
-  <p-button (click)="returnToPokemonList()"><i class="pi pi-undo"></i>return</p-button>
+  <a routerLink="/pokemon">
+    <p-button><i class="pi pi-undo"></i>return</p-button>
+  </a>
   @if (pokemonPageState.currentPokemon(); as pokemon) {
     <app-pokemon-card [pokemon]="pokemon" />
   } @else {

@@ -1,11 +1,13 @@
 import { Component, inject } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Location } from '@angular/common'
 import { ButtonModule } from 'primeng/button';
+import { RippleModule } from 'primeng/ripple';
+import { Tooltip } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-sidebar-buttons',
-  imports: [ButtonModule, RouterLink],
+  imports: [ButtonModule, RouterLink, RouterLinkActive ,RippleModule, Tooltip],
   templateUrl: './sidebar-buttons.html',
   styleUrl: './sidebar-buttons.scss'
 })
