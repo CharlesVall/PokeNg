@@ -7,6 +7,7 @@ import Aura from '@primeuix/themes/aura';
 
 import { routes } from './app.routes';
 import { API_URL } from '@core/tokens/api-url.token';
+import { APP_LANGUAGE } from '@core/tokens/app-language.token';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -23,6 +24,7 @@ export const appConfig: ApplicationConfig = {
           }
         }
     }),
-    {provide: API_URL, useValue: 'https://pokeapi.co/api/v2'}
+    {provide: API_URL, useValue: 'https://pokeapi.co/api/v2'},
+    {provide: APP_LANGUAGE, useValue: 'en'}
   ]
 };

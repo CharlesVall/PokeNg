@@ -3,20 +3,18 @@ import { AbilitiesRepository } from '../abilities-repository/abilities-repositor
 import { map, Observable } from 'rxjs';
 import { arrayFilter } from '@paddls/rxjs-common';
 import { AbilityDetails, FlavorTextEntry } from '@core/models';
+import { APP_LANGUAGE } from '@core/tokens/app-language.token';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AbilitiesService {
   private readonly abilitiesRepository = inject(AbilitiesRepository)
+  private readonly appLanguage = inject(APP_LANGUAGE)
   
-  private isMatchingDescription(
-    entry: FlavorTextEntry, 
-    language = 'en', 
-    versionGroup = 'scarlet-violet'
-  ): boolean {
-    return entry.language.name === language && 
-           entry.version_group.name === versionGroup;
+  private isMatchingDescription(entry: FlavorTextEntry ): boolean {
+    return entry.language.name === this.appLanguage && 
+           entry.version_group.name === 'scarlet-violet';
   }
   
   public getAbilityDetailsByName(abilityName: string): Observable<AbilityDetails> {
