@@ -9,6 +9,7 @@ import { PokemonPageState } from './page-state/pokemon-page-state';
 import { PokemonCard } from './pokemon-card/pokemon-card';
 import { PokemonId } from '@core/models/';
 import { CommonModule } from '@angular/common';
+import { EvolutionService } from '@core/services/evolution-service/evolution-service';
 
 @Component({
   selector: 'app-pokemon-page',
@@ -24,16 +25,18 @@ import { CommonModule } from '@angular/common';
 export class PokemonPage {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
-  public readonly pokemonPageState = inject(PokemonPageState);
+  private readonly evolutionService = inject(EvolutionService)
+  protected readonly pokemonPageState = inject(PokemonPageState);
 
   private readonly routeParams = toSignal(this.route.params);
-  protected pokemonId = computed(() => Number(this.routeParams()?.['id'] ?? 0));
+  protected requestedPokemonId = computed(() => Number(this.routeParams()?.['id'] ?? 0));
 
   public constructor() {
     effect(() => {
-      const id = this.pokemonId();
+      const id = this.requestedPokemonId();
       if (PokemonId.isValid(id)) {
         this.pokemonPageState.loadPokemon(new PokemonId(id));
+        this.evolutionService.getEvolutionChainById(new PokemonId(id)).subscribe(console.log)
       } else {
         this.pokemonPageState.clearPokemon();
         this.router.navigateByUrl('page-not-found');

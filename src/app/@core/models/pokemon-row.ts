@@ -18,7 +18,7 @@ export class PokemonRow {
     this.sprites = pokemonRowData.sprites
   }
 
-  static fromDto(data: PokemonRowData): PokemonRow {
+  static fromData(data: PokemonRowData): PokemonRow {
     return new PokemonRow(data);
   }
 }

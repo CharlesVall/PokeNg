@@ -1,4 +1,5 @@
-import { Generation, VersionGroup } from "./pokemon-misc"
+import { Generation, Language, Name } from "./pokemon-misc"
+import { FlavorTextEntry } from "./pokemon-text-flavor"
 
 export interface AbilityDetails {
   effect_changes: any[]
@@ -16,33 +17,6 @@ export interface EffectEntry {
   effect: string
   language: Language
   short_effect: string
-}
-
-export interface Language {
-  name: string
-  url: string
-}
-
-export interface FlavorTextEntry {
-  flavor_text: string
-  language: Language2
-  version_group: VersionGroup
-}
-
-export interface Language2 {
-  name: string
-  url: string
-}
-
-
-export interface Name {
-  language: Language3
-  name: string
-}
-
-export interface Language3 {
-  name: string
-  url: string
 }
 
 export interface Pokemon {

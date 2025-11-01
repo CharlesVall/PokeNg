@@ -24,7 +24,7 @@ export class PokemonDetails {
     this.stats = pokemonDetailsData.stats
   }
 
-  static fromDto(data: PokemonDetailsData): PokemonDetails {
+  static fromData(data: PokemonDetailsData): PokemonDetails {
     return new PokemonDetails(data);
   }
 }
