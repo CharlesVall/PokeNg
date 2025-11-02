@@ -8,6 +8,9 @@ import Aura from '@primeuix/themes/aura';
 import { routes } from './app.routes';
 import { API_URL } from '@core/tokens/api-url.token';
 import { APP_LANGUAGE } from '@core/tokens/app-language.token';
+import { SORT_STRATEGIES } from '@core/tokens/sort-strategy.token';
+import { NumericSortStrategy } from '@shared/components/pokemon-list/services/sort-strategies-serviec/sort-strategies/numeric-sort-strategy';
+import { TextSortStrategy } from '@shared/components/pokemon-list/services/sort-strategies-serviec/sort-strategies/text-sort-strategy';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,6 +28,8 @@ export const appConfig: ApplicationConfig = {
         }
     }),
     {provide: API_URL, useValue: 'https://pokeapi.co/api/v2'},
-    {provide: APP_LANGUAGE, useValue: 'en'}
+    {provide: APP_LANGUAGE, useValue: 'en'},
+    {provide: SORT_STRATEGIES, useClass: TextSortStrategy, multi: true},
+    {provide: SORT_STRATEGIES, useClass: NumericSortStrategy, multi: true},
   ]
 };

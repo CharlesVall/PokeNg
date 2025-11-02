@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import { Component, computed, effect, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ButtonModule } from 'primeng/button';
@@ -42,9 +42,5 @@ export class PokemonPage {
         this.router.navigateByUrl('page-not-found');
       }
     });
-  }
-
-  protected returnToPokemonList(): void {
-    this.router.navigateByUrl('pokedex');
   }
 }

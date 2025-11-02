@@ -1,6 +1,22 @@
-<p-table [value]="(pokemonRowData$ | async) || []" [scrollable]="true" scrollHeight="75vh">
+<p-table [value]="(pokemonRowData$ | async) || []" [scrollable]="true" [scrollHeight]="scrollHeight()" [customSort]="true" (sortFunction)="customSort($event)">
   <ng-template #header>
-    <ng-container *ngTemplateOutlet="headerRow" />
+    <tr class="pokemon-list__header">
+      <th style="width:10%" pSortableColumn="id">
+        Index <p-sortIcon field="id"/>
+      </th>
+      <th style="width:14%">
+        Image
+      </th>
+      <th style="width:22%" pSortableColumn="name">
+        Name <p-sortIcon field="name"/>
+      </th>
+      <th style="width:14%">
+        Types
+      </th>
+      <th style="width:40%" pSortableColumn="abilities">
+        Abilities <p-sortIcon field="abilities"/>
+      </th>
+    </tr>
     <ng-container *ngTemplateOutlet="filterRow" />
   </ng-template>
 
@@ -13,16 +29,6 @@
   </ng-template>
 </p-table>
 
-<!-- Header Row Template -->
-<ng-template #headerRow>
-  <tr class="pokemon-list__header">
-    <th style="width:8%">Index</th>
-    <th style="width:14%">Image</th>
-    <th style="width:22%">Name</th>
-    <th style="width:14%">Types</th>
-    <th style="width:42%">Abilities</th>
-  </tr>
-</ng-template>
 
 <!-- Filter Row Template -->
 <ng-template #filterRow>

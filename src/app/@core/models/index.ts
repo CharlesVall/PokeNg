@@ -13,5 +13,6 @@ export * from './pokemon-details'
 
 export * from './interfaces/pokemon-stat'
 export * from './interfaces/filter-criteria'
+export * from './interfaces/sort-strategy'
 export * from './interfaces/ability-details'
 export * from './interfaces/evolution-chain'

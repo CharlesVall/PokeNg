@@ -1,5 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -15,6 +15,8 @@ import { ListDataService } from './services/list-data-service/list-data-service'
 import { FilterStateService } from './services/filter-state-service/filter-state-service';
 import { FilterStrategyService } from './services/filter-strategy-service/filter-strategy-service';
 import { PokemonAbilitiesDisplayer } from '../pokemon-abilities-displayer/pokemon-abilities-displayer';
+import { SortEvent } from 'primeng/api';
+import { SortStrategiesService } from './services/sort-strategies-serviec/sort-strategies-service';
 
 
 @Component({
@@ -28,17 +30,22 @@ import { PokemonAbilitiesDisplayer } from '../pokemon-abilities-displayer/pokemo
   styleUrl: './pokemon-list.scss',
   providers: [ListDataService, FilterStrategyService, FilterStateService]
 })
-export class PokemonList implements OnInit {
+export class PokemonList {
   private readonly router = inject(Router)
   private readonly listDataService = inject(ListDataService);
+  private readonly sortStrategiesService = inject(SortStrategiesService)
   protected readonly filterStateService = inject(FilterStateService)
 
+  public readonly scrollHeight = input.required<string>()
   protected readonly pokemonRowData$ = this.listDataService.filteredPokemons$;
   
   protected traveToPokemonDetailsPage(pokemonId: PokemonId) {
     this.router.navigate(['/pokemon', pokemonId.value]);
   }
 
-  ngOnInit(): void {
+  public customSort(event: SortEvent) {
+    if (!event.field || !event.data || !event.order) return;
+    this.sortStrategiesService.sortData(event.data, event.field, event.order as 1 | -1);
   }
+
 }
