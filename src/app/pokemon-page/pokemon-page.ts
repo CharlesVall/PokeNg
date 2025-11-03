@@ -6,17 +6,19 @@ import { SkeletonModule } from 'primeng/skeleton';
 
 import { ForwardBackButtonsLayout } from "./forward-back-buttons-layout/forward-back-buttons-layout";
 import { PokemonPageState } from './page-state/pokemon-page-state';
-import { PokemonCard } from './pokemon-card/pokemon-card';
 import { PokemonId } from '@core/models/';
 import { CommonModule } from '@angular/common';
 import { EvolutionService } from '@core/services/evolution-service/evolution-service';
+import { PokemonBoard } from './pokemon-board/pokemon-board';
+import { FeaturePageHeader } from '@shared/components/feature-page-header/feature-page-header';
 
 @Component({
   selector: 'app-pokemon-page',
   imports: [
-    CommonModule, ButtonModule, SkeletonModule,
-    ForwardBackButtonsLayout, PokemonCard,
-    RouterLink
+    CommonModule, RouterLink,
+    ButtonModule, SkeletonModule,
+    ForwardBackButtonsLayout, PokemonBoard, FeaturePageHeader
+    
 ],
   templateUrl: './pokemon-page.html',
   styleUrl: './pokemon-page.scss',

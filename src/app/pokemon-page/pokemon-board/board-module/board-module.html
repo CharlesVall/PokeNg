@@ -1,0 +1,13 @@
+<div class="board-module">
+  @switch (moduleType()) {
+    @case ("pokemon-card") {
+      <app-pokemon-card-module [pokemon]="pokemon()"/>
+    }
+    @case ("pokemon-stats") {
+      <app-pokemon-stats-module [pokemon]="pokemon()"/>
+    }
+    @case ("pokemon-evolution") {
+      <app-pokemon-evolution-module [pokemon]="pokemon()"/>
+    }
+  }
+</div>

@@ -1,0 +1,24 @@
+<h2><strong>{{ pokemon().name | titlecase }}</strong></h2>
+<div class="pokemon-card__main">
+  <img 
+    [ngSrc]="pokemon().sprites.other['official-artwork'].front_default" 
+    [alt]="pokemon().name" 
+    width="240" height="240" 
+    priority
+  />
+
+  <div class="pokemon-card__info">
+  <p>
+    <strong>Id:</strong>
+    #{{ pokemon().id }}
+  </p>
+  <p>
+    <strong>Types:</strong>
+    <app-pokemon-types-displayer [types]="pokemon().types | displayTypes" />
+  </p>
+  <div class="pokemon-card__abilities">
+    <strong>Abilities:</strong>
+    <app-pokemon-abilities-displayer [abilities]="pokemon().abilities | displayAbilities" [displayAsList]="true" />
+  </div>
+</div>
+</div>

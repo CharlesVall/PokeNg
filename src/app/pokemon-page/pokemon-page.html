@@ -1,11 +1,16 @@
 <div class="pokemon-page">
-  <a routerLink="/pokemon">
-    <p-button><i class="pi pi-undo"></i>return</p-button>
-  </a>
-  @if (pokemonPageState.currentPokemon(); as pokemon) {
-    <app-pokemon-card [pokemon]="pokemon" />
-  } @else {
-    <p-skeleton class="pokemon-card__skeleton" width="100%" height="22rem" />
-  }
-  <app-forward-back-buttons-layout />
+  <div class="pokemon-page__header">
+    <app-feature-page-header pageTitle="pokemon" />
+  </div>
+  <div class="pokemon-page__main">
+    <app-forward-back-buttons-layout />
+    @if (pokemonPageState.currentPokemon(); as pokemon) {
+      <app-pokemon-board [pokemon]="pokemon" />
+    } @else {
+      <p-skeleton class="pokemon-card__skeleton" width="100%" height="22rem" />
+    }
+    <a routerLink="/pokemon">
+      <p-button><i class="pi pi-undo"></i>return</p-button>
+    </a>
+  </div>
 </div>

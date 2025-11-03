@@ -1,0 +1,9 @@
+<div class="pokemon-board">
+  <div class="pokemon-board__top">
+    <app-board-module moduleType="pokemon-card" [pokemon]="pokemon()"/>
+    <app-board-module moduleType="pokemon-stats" [pokemon]="pokemon()"/>
+  </div>
+  <div class="pokemon-board__bottom">
+    <app-board-module moduleType="pokemon-evolution" [pokemon]="pokemon()"/>
+  </div>
+</div>
