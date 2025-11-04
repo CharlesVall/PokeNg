@@ -1,11 +1,21 @@
-.pokemon-board {
+.pokemon-board-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 10rem auto;
+  grid-template-areas:
+  "block1 block2"
+  "block1 block3"
+  "block4 block4";
+  gap: 1.4rem;
+}
+
+.pokemon-board-grid .block-1 { grid-area: block1; }
+.pokemon-board-grid .block-2 { grid-area: block2; }
+.pokemon-board-grid .block-3 { grid-area: block3; }
+.pokemon-board-grid .block-4 { grid-area: block4; }
+
+.block {
   display: flex;
+  align-items: center;
   justify-content: center;
-  flex-direction: column;
-  gap: 2rem;
-  .pokemon-board__top {
-    display: flex;
-    width: 100%;
-    gap: 2rem;
-  }
 }

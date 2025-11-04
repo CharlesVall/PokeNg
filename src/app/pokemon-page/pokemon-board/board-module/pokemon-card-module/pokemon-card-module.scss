@@ -1,20 +1,27 @@
-.pokemon-card__main {
+:host {
   display: flex;
-  gap: 3rem;
-  img {
-    width: 15rem;
-  }
-  .pokemon-card__info {
-    min-width: 12vw;
-    p {
+  width: 100%;
+  height: 100%;
+  .pokemon-card {
+    .pokemon-card__main {
       display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .pokemon-card__abilities {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
+      gap: 3rem;
+      img {
+        width: 15rem;
+      }
+      .pokemon-card__info {
+        min-width: 12vw;
+        p {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+        }
+        .pokemon-card__abilities {
+          display: flex;
+          flex-direction: column;
+          gap: 0.4rem;
+        }
+      }
     }
   }
 }

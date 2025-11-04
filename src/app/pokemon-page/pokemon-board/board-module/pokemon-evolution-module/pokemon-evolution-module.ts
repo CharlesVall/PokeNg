@@ -1,5 +1,5 @@
-import { Component, input } from '@angular/core';
-import { PokemonDetails } from '@core/models';
+import { Component, inject } from '@angular/core';
+import { BoardStateService } from '../../board-state-service/board-state-service';
 
 @Component({
   selector: 'app-pokemon-evolution-module',
@@ -8,5 +8,7 @@ import { PokemonDetails } from '@core/models';
   styleUrl: './pokemon-evolution-module.scss'
 })
 export class PokemonEvolutionModule {
-  public readonly pokemon = input.required<PokemonDetails>({ alias: 'pokemon' });
+  private readonly boardStateService = inject(BoardStateService)
+  protected readonly pokemon = this.boardStateService.currentPokemon
+  
 }

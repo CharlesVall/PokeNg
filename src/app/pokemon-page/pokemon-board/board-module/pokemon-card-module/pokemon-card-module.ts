@@ -1,9 +1,9 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component, input } from '@angular/core';
-import { PokemonDetails } from '@core/models';
+import { Component, inject } from '@angular/core';
 import { PokemonAbilitiesDisplayer } from '@shared/components/pokemon-abilities-displayer/pokemon-abilities-displayer';
 import { PokemonTypesDisplayer } from '@shared/components/pokemon-types-displayer/pokemon-types-displayer';
 import { PokemonPipes } from '@shared/pipes';
+import { BoardStateService } from '../../board-state-service/board-state-service';
 
 @Component({
   selector: 'app-pokemon-card-module',
@@ -14,5 +14,6 @@ import { PokemonPipes } from '@shared/pipes';
   styleUrl: './pokemon-card-module.scss'
 })
 export class PokemonCardModule {
-  public readonly pokemon = input.required<PokemonDetails>({ alias: 'pokemon' });
+  private readonly boardStateService = inject(BoardStateService)
+  protected readonly pokemon = this.boardStateService.currentPokemon
 }

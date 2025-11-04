@@ -5,9 +5,9 @@
   <div class="pokemon-page__main">
     <app-forward-back-buttons-layout />
     @if (pokemonPageState.currentPokemon(); as pokemon) {
-      <app-pokemon-board [pokemon]="pokemon" />
+      <app-pokemon-board />
     } @else {
-      <p-skeleton class="pokemon-card__skeleton" width="100%" height="22rem" />
+      <app-pokemon-board [isSkeleton]="true"/>
     }
     <a routerLink="/pokemon">
       <p-button><i class="pi pi-undo"></i>return</p-button>

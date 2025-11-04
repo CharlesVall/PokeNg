@@ -11,29 +11,26 @@ export class FilterStateService {
   public readonly typesControl = new FormControl<string[]>([], { nonNullable: true });
 
   public readonly typesOptions = [
-  'bug', 'dark', 'dragon', 'electric', 'fire', 'fairy', 'fighting',
-  'flying', 'ghost', 'ground', 'ice', 'normal', 'poison',
-  'psychic', 'rock', 'steel', 'water'
-]
+    'bug', 'dark', 'dragon', 'electric', 'fire', 'fairy', 'fighting',
+    'flying', 'ghost', 'ground', 'ice', 'normal', 'poison',
+    'psychic', 'rock', 'steel', 'water'
+  ]
 
   public readonly filters$: Observable<FilterCriteria> = combineLatest([
     this.idControl.valueChanges.pipe(
       startWith(''),
-      debounceTime(300)
     ),
     this.nameControl.valueChanges.pipe(
       startWith(''),
-      debounceTime(300)
     ),
     this.abilitiesControl.valueChanges.pipe(
       startWith(''),
-      debounceTime(300)
     ),
     this.typesControl.valueChanges.pipe(
       startWith([]),
-      debounceTime(300)
     )
   ]).pipe(
+    debounceTime(300),
     map(([id, name, abilities, types]) => ({ id, name, abilities, types }))
   );
 }

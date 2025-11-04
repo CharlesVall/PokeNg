@@ -27,7 +27,6 @@ import { FeaturePageHeader } from '@shared/components/feature-page-header/featur
 export class PokemonPage {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
-  private readonly evolutionService = inject(EvolutionService)
   protected readonly pokemonPageState = inject(PokemonPageState);
 
   private readonly routeParams = toSignal(this.route.params);
@@ -38,7 +37,6 @@ export class PokemonPage {
       const id = this.requestedPokemonId();
       if (PokemonId.isValid(id)) {
         this.pokemonPageState.loadPokemon(new PokemonId(id));
-        this.evolutionService.getEvolutionChainById(new PokemonId(id)).subscribe(console.log)
       } else {
         this.pokemonPageState.clearPokemon();
         this.router.navigateByUrl('page-not-found');

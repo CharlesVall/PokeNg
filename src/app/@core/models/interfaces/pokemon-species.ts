@@ -1,5 +1,4 @@
-import { Language2, Language3, Pokemon } from "./pokemon-misc"
-import { FlavorTextEntry } from "./pokemon-text-flavor"
+import { Color, EggGroup, EvolutionChainUrl, FlavorTextEntry, Genera, Generation, GrowthRate, Habitat, Language2, Language3, Name, PalParkEncounter, PokedexNumber, Pokemon, Shape, Variety } from "./pokemon-misc"
 
 export interface PokemonSpecies {
   base_happiness: number
@@ -29,79 +28,4 @@ export interface PokemonSpecies {
   pokedex_numbers: PokedexNumber[]
   shape: Shape
   varieties: Variety[]
-}
-
-export interface Color {
-  name: string
-  url: string
-}
-
-export interface EggGroup {
-  name: string
-  url: string
-}
-
-export interface EvolutionChainUrl {
-  url: string
-}
-
-export interface Language {
-  name: string
-  url: string
-}
-
-export interface Genera {
-  genus: string
-  language: Language2
-}
-
-export interface Generation {
-  name: string
-  url: string
-}
-
-export interface GrowthRate {
-  name: string
-  url: string
-}
-
-export interface Habitat {
-  name: string
-  url: string
-}
-
-export interface Name {
-  language: Language3
-  name: string
-}
-
-export interface PalParkEncounter {
-  area: Area
-  base_score: number
-  rate: number
-}
-
-export interface Area {
-  name: string
-  url: string
-}
-
-export interface PokedexNumber {
-  entry_number: number
-  pokedex: Pokedex
-}
-
-export interface Pokedex {
-  name: string
-  url: string
-}
-
-export interface Shape {
-  name: string
-  url: string
-}
-
-export interface Variety {
-  is_default: boolean
-  pokemon: Pokemon
 }

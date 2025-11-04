@@ -12,7 +12,7 @@ export class SortStrategiesService {
   }
 
   private findStrategy(field: string): SortStrategy {
-    const specific = this.strategies.find(s => s.supports(field));
+    const specific = this.strategies.find(strategy => strategy.supports(field));
     if (specific) return specific;
 
     const fallback = this.strategies.find(s => s.supports('*'));

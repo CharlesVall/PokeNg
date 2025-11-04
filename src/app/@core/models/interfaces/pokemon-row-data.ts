@@ -1,6 +1,4 @@
-import { Ability } from './pokemon-ability';
-import { Sprites } from './pokemon-sprites';
-import { PokemonType } from './pokemon-type';
+import { Ability, PokemonType, Sprites } from "./pokemon-misc";
 
 export interface PokemonRowData {
   id: number;
