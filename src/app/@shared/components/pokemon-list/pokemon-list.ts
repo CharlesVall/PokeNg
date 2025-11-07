@@ -1,5 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component, inject, input, OnInit } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -16,7 +16,10 @@ import { FilterStateService } from './services/filter-state-service/filter-state
 import { FilterStrategyService } from './services/filter-strategy-service/filter-strategy-service';
 import { PokemonAbilitiesDisplayer } from '../pokemon-abilities-displayer/pokemon-abilities-displayer';
 import { SortEvent } from 'primeng/api';
-import { SortStrategiesService } from './services/sort-strategies-serviec/sort-strategies-service';
+import { SortStrategiesService } from './services/sort-strategies-service/sort-strategies-service';
+import { FILTER_STRATEGIES_PROVIDERS } from './services/filter-strategy-service/filter-strategy/filter-strategies-provider';
+import { SORT_STRATEGIES_PROVIDERS } from './services/sort-strategies-service/sort-strategies/sort-strategies-provider';
+import { CheckboxModule } from 'primeng/checkbox';
 
 
 @Component({
@@ -24,11 +27,16 @@ import { SortStrategiesService } from './services/sort-strategies-serviec/sort-s
   imports: [
     CommonModule, TableModule, SkeletonModule, MultiSelectModule,
     PokemonPipes, PokemonTypesDisplayer, PokemonAbilitiesDisplayer,
-    NgOptimizedImage, ReactiveFormsModule, InputTextModule
+    NgOptimizedImage, ReactiveFormsModule, InputTextModule,
+    CheckboxModule
   ],
   templateUrl: './pokemon-list.html',
   styleUrl: './pokemon-list.scss',
-  providers: [ListDataService, FilterStrategyService, FilterStateService]
+  providers: [
+    ListDataService, FilterStrategyService,
+    FilterStateService, FILTER_STRATEGIES_PROVIDERS,
+    SortStrategiesService, SORT_STRATEGIES_PROVIDERS
+  ]
 })
 export class PokemonList {
   private readonly router = inject(Router)
@@ -36,6 +44,7 @@ export class PokemonList {
   private readonly sortStrategiesService = inject(SortStrategiesService)
   protected readonly filterStateService = inject(FilterStateService)
 
+  public isCheckable = input<boolean>()
   public readonly scrollHeight = input.required<string>()
   protected readonly pokemonRowData$ = this.listDataService.filteredPokemons$;
   
@@ -43,9 +52,8 @@ export class PokemonList {
     this.router.navigate(['/pokemon', pokemonId.value]);
   }
 
-  public customSort(event: SortEvent) {
+  protected customSort(event: SortEvent) {
     if (!event.field || !event.data || !event.order) return;
     this.sortStrategiesService.sortData(event.data, event.field, event.order as 1 | -1);
   }
-
 }

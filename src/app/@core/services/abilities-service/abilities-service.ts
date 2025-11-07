@@ -15,6 +15,8 @@ export class AbilitiesService {
   private readonly apiUrl = inject(API_URL);
   private readonly appLanguage = inject(APP_LANGUAGE);
 
+  private readonly abilitiesDetailsCache = new Map<string, Observable<AbilityDetails>>()
+
   private fetchAbilityDetails(abilityName: string): Observable<AbilityDetails> {
     return this.http
       .get<AbilityDetails>(`${this.apiUrl}/ability/${abilityName}`)
@@ -22,11 +24,16 @@ export class AbilitiesService {
   }
 
   public getAbilityDetails(abilityName: string): Observable<AbilityDetails> {
-    return this.fetchAbilityDetails(abilityName);
+    if (!this.abilitiesDetailsCache.has(abilityName)) {
+      const request$ = this.fetchAbilityDetails(abilityName);
+      this.abilitiesDetailsCache.set(abilityName, request$);
+    }
+
+    return this.abilitiesDetailsCache.get(abilityName)!;
   }
 
   public getAbilityDescriptionByName(abilityName: string): Observable<string> {
-    return this.fetchAbilityDetails(abilityName).pipe(
+    return this.getAbilityDetails(abilityName).pipe(
       map(details => details.flavor_text_entries),
       arrayFilter((entry: FlavorTextEntry) => 
         this.isMatchingDescription(entry)

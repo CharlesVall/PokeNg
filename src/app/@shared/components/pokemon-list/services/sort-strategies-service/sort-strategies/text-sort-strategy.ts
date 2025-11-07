@@ -6,7 +6,8 @@ export class TextSortStrategy implements SortStrategy {
   supports(field: string): boolean {
     return field === '*';
   }
-  sort(a: any, b: any, order: number, field: string): number {
+  
+  sort(a: any, b: any, field: string, order: number): number {
     return a[field].localeCompare(b[field]) * order;
   }
 }

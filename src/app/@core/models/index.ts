@@ -9,6 +9,7 @@ export * from './pokemon-row'
 export * from './pokemon-details'
 
 export * from './interfaces/filter-criteria'
+export * from './interfaces/filter-strategy'
 export * from './interfaces/sort-strategy'
 export * from './interfaces/ability-details'
 export * from './interfaces/evolution-chain'

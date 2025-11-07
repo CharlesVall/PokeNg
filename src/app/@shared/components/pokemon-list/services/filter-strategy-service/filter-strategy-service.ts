@@ -1,56 +1,29 @@
-import { Injectable } from '@angular/core';
-import { PokemonRow } from '@core/models';
+import { inject, Injectable } from '@angular/core';
+import { FilterStrategy, PokemonRow } from '@core/models';
 import { FilterCriteria } from '@core/models'; 
+import { FILTER_STRATEGIES } from '@core/tokens/filter-strategy.token';
 
 @Injectable()
 export class FilterStrategyService {
+  private readonly filterStrategies = inject(FILTER_STRATEGIES)
   
-  public applyFilters(pokemons: PokemonRow[], criteria: FilterCriteria): PokemonRow[] {
-    return pokemons
-      .filter(pokemon => this.matchesId(pokemon, criteria.id))
-      .filter(pokemon => this.matchesName(pokemon, criteria.name))
-      .filter(pokemon => this.matchesAbilities(pokemon, criteria.abilities))
-      .filter(pokemon => this.matchesTypes(pokemon, criteria.types))
+  public reduceWithFilterStrategies(pokemons: PokemonRow[], criteria: FilterCriteria): PokemonRow[] {
+    const fields = Object.keys(criteria) as (keyof FilterCriteria)[];
+    let result: PokemonRow[] = [...pokemons];
+    
+    for (const field of fields) {
+      const filterStrategy = this.findStrategy(field);
+    
+      if (filterStrategy) {
+        const filterValue = criteria[field];
+        result = filterStrategy.reduce(result, filterValue);
+      }
+    }
+  
+    return result;
   }
 
-  private matchesId(pokemon: PokemonRow, id: string): boolean {
-    if (!id.trim()) {
-      return true;
-    }
-    
-    return pokemon.id.toString().includes(id);
-  }
-
-  private matchesName(pokemon: PokemonRow, name: string): boolean {
-    if (!name.trim()) {
-      return true;
-    }
-    
-    return pokemon.name.toLowerCase().includes(name.toLowerCase());
-  }
-
-  private matchesAbilities(pokemon: PokemonRow, abilities: string): boolean {
-    if (!abilities.trim()) {
-      return true;
-    }
-    
-    const searchTerm = abilities.toLowerCase();
-    
-    return pokemon.abilities.some(abilityObject => 
-      abilityObject.ability.name.toLowerCase().includes(searchTerm)
-    );
-  } 
-
-  private matchesTypes(pokemon: PokemonRow, types: string[]): boolean {
-    if (!types || types.length === 0) {
-      return true
-    }
-    const pokemonTypes = new Set(pokemon.types.map(typeObject => typeObject.type.name));
-    const filterTypes = new Set(types);
-
-    const areSetSame =
-      pokemonTypes.size === filterTypes.size &&
-      [...pokemonTypes].every(type => filterTypes.has(type));
-    return areSetSame
+  private findStrategy(field: keyof FilterCriteria): FilterStrategy | null {
+    return this.filterStrategies.find(strategy => strategy.supports(field)) ?? null;
   }
 }

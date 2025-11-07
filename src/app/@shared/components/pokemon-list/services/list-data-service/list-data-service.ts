@@ -15,17 +15,15 @@ export class ListDataService {
 
   private readonly pokemonRowData$ = this.pokemonService
     .getAllPokemonRows()
-    .pipe(
-      hardCache(),
-    );
+    .pipe(hardCache());
 
   public readonly filteredPokemons$: Observable<PokemonRow[]> = combineLatest([
     this.pokemonRowData$,
     this.filterStateService.filters$
   ]).pipe(
-      map(([pokemons, filters]) => {
-        return this.filterStrategyService.applyFilters(pokemons, filters);
-      }),
-      hardCache()
+    map(([pokemons, filters]) => 
+      this.filterStrategyService.reduceWithFilterStrategies(pokemons, filters)
+    ),
+    hardCache()
   );
 }

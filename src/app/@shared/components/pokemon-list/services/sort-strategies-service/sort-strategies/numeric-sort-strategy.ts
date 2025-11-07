@@ -6,7 +6,8 @@ export class NumericSortStrategy implements SortStrategy {
   supports(field: string): boolean {
     return ['id'].includes(field);
   }
-  sort(a: any, b: any, order: number, field: string): number {
+  
+  sort(a: any, b: any, field: string, order: number): number {
     return (Number(a[field]) - Number(b[field])) * order;
   }
 }
