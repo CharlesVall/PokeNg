@@ -1,20 +1,22 @@
 <p-table [value]="(pokemonRowData$ | async) || []" [scrollable]="true" [scrollHeight]="scrollHeight()" [customSort]="true" (sortFunction)="customSort($event)">
   <ng-template #header>
     <tr class="pokemon-list__header">
-      <th></th>
-      <th style="width:10%" pSortableColumn="id">
+      @if (isCheckable()) {
+        <th style="width: 4%"></th>
+      }
+      <th style="width:8%" pSortableColumn="id">
         Index <p-sortIcon field="id"/>
       </th>
       <th style="width:14%">
         Image
       </th>
-      <th style="width:22%" pSortableColumn="name">
+      <th style="width:20%" pSortableColumn="name">
         Name <p-sortIcon field="name"/>
       </th>
-      <th style="width:14%">
+      <th style="width:20%">
         Types
       </th>
-      <th style="width:40%" pSortableColumn="abilities">
+      <th [style.width]="isCheckable() ? '34%' : '38%'" pSortableColumn="abilities">
         Abilities <p-sortIcon field="abilities"/>
       </th>
     </tr>
@@ -34,7 +36,9 @@
 <!-- Filter Row Template -->
 <ng-template #filterRow>
   <tr class="pokemon-list__filter-row">
-    <th></th>
+    @if (isCheckable()) {
+      <th></th>
+    }
     <th style="width:8%">
       <input pInputText
         class="search-id" 
@@ -45,7 +49,7 @@
       />
     </th>
     <th style="width:14%"></th>
-    <th style="width:19%">
+    <th style="width:20%">
       <input pInputText
         class="search-name" 
         placeholder="Search name"
@@ -53,16 +57,16 @@
         fluid
       />
     </th>
-    <th style="width:21%">
+    <th style="width:20%">
       <p-multiselect
         [options]="filterStateService.typesOptions"
         [formControl]="filterStateService.typesControl"
         [maxSelectedLabels]="2"
-        placeholder="Search types" 
+        placeholder="Search types"
         fluid
       />
     </th>
-    <th style="width:38%">
+    <th [style.width]="isCheckable() ? '34%' : '38%'">
       <input pInputText
         class="search-ability" 
         placeholder="Search ability" 
@@ -75,8 +79,17 @@
 
 <!-- Pokemon Row Template -->
 <ng-template #pokemonRow let-pokemon="pokemon">
-  <tr class="pokemon-list__row" (click)="traveToPokemonDetailsPage(pokemon.id)">
-    <td><p-check-box /></td>
+  <tr class="pokemon-list__row" (click)="handleRowClick(pokemon.id)">
+    @if (isCheckable()) {
+      <td>
+        <p-check-box
+          [binary]="true"
+          [ngModel]="selectedPokemonService.isSelected(pokemon.id)"
+          (onChange)="selectedPokemonService.set(pokemon.id, $event.checked)"
+          (click)="$event.stopPropagation()"
+        />
+      </td>
+    }
     <td>{{ pokemon.id }}</td>
     <td>
       <ng-container *ngTemplateOutlet="pokemonImage; context: { pokemon: pokemon }" />
@@ -102,6 +115,11 @@
 <ng-template #skeletonRows>
   @for (skeleton of [].constructor(10); track $index) {
     <tr class="pokemon-list__skeleton">
+      @if (isCheckable()) {
+        <td style="width: 4%">
+          <p-skeleton width="1rem" height="1rem" />
+        </td>
+      }
       <td style="width:8%">
         <p-skeleton width="80%" />
       </td>
@@ -114,7 +132,7 @@
       <td class="skeleton-types" style="width:20%">
         <p-skeleton width="100%" height="2rem" />
       </td>
-      <td style="width:38%">
+      <td [style.width]="isCheckable() ? '34%' : '38%'" >
         <p-skeleton width="100%" height="1.3rem" />
       </td>
     </tr>

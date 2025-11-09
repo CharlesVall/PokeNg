@@ -1,0 +1,27 @@
+@use 'variables.scss' as *;
+
+.compare {
+  .compare__main {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    gap: 3rem;
+    .compare__app {
+      display: flex;
+      width: 100%;
+      min-height: 30rem;
+      gap: 3rem;
+      .compare__graph {
+        width: 40%;
+      }
+      .compare__selected-list {
+        width: 60%;
+      }
+    }
+    .compare__list-frame {
+      border: 1px solid $frame-border-color;
+      border-radius: 1rem;
+      padding: 1.5rem;
+    }
+  }
+}

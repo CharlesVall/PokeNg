@@ -1,7 +1,7 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, inject, input } from '@angular/core';
 import { Router } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TableModule } from 'primeng/table';
 import { SkeletonModule } from 'primeng/skeleton';
@@ -20,6 +20,7 @@ import { SortStrategiesService } from './services/sort-strategies-service/sort-s
 import { FILTER_STRATEGIES_PROVIDERS } from './services/filter-strategy-service/filter-strategy/filter-strategies-provider';
 import { SORT_STRATEGIES_PROVIDERS } from './services/sort-strategies-service/sort-strategies/sort-strategies-provider';
 import { CheckboxModule } from 'primeng/checkbox';
+import { SelectedPokemonService } from './services/selected-pokemon-service/selected-pokemon-service';
 
 
 @Component({
@@ -28,7 +29,7 @@ import { CheckboxModule } from 'primeng/checkbox';
     CommonModule, TableModule, SkeletonModule, MultiSelectModule,
     PokemonPipes, PokemonTypesDisplayer, PokemonAbilitiesDisplayer,
     NgOptimizedImage, ReactiveFormsModule, InputTextModule,
-    CheckboxModule
+    FormsModule, CheckboxModule
   ],
   templateUrl: './pokemon-list.html',
   styleUrl: './pokemon-list.scss',
@@ -43,9 +44,12 @@ export class PokemonList {
   private readonly listDataService = inject(ListDataService);
   private readonly sortStrategiesService = inject(SortStrategiesService)
   protected readonly filterStateService = inject(FilterStateService)
+  protected readonly selectedPokemonService = inject(SelectedPokemonService)
 
   public isCheckable = input<boolean>()
   public readonly scrollHeight = input.required<string>()
+
+  protected readonly selectedIds = this.selectedPokemonService.selectedIds
   protected readonly pokemonRowData$ = this.listDataService.filteredPokemons$;
   
   protected traveToPokemonDetailsPage(pokemonId: PokemonId) {
@@ -55,5 +59,13 @@ export class PokemonList {
   protected customSort(event: SortEvent) {
     if (!event.field || !event.data || !event.order) return;
     this.sortStrategiesService.sortData(event.data, event.field, event.order as 1 | -1);
+  }
+
+  protected handleRowClick(pokemonId: PokemonId) {
+    if (!this.isCheckable()) {
+      this.traveToPokemonDetailsPage(pokemonId);
+      return;
+    }
+    this.selectedPokemonService.toggle(pokemonId)
   }
 }

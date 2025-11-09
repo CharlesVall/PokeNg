@@ -1,1 +1,15 @@
-<app-pokemon-list scrollHeight="100vh"/>
+<div class="compare">
+  <app-feature-page-header pageTitle="Compare" />
+  <div class="compare__main">
+    <div class="compare__app">
+      <div class="compare__graph">
+      </div>
+      <div class="compare__selected-list">
+        <app-selected-pokemon-list />
+      </div>
+    </div>
+    <div class="compare__list-frame">
+      <app-pokemon-list scrollHeight="75vh" [isCheckable]="true" />
+    </div>
+  </div>
+</div>
