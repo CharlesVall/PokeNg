@@ -17,6 +17,7 @@ export class PokemonRepository {
   private readonly apiUrl = inject(API_URL)  
 
   private readonly pokemonDetailsCache = new Map<PokemonId, Observable<PokemonDetailsData>>();
+  private readonly pokemonFormCache = new Map<number, Observable<PokemonDetailsData>>();
   private readonly pokemonSpeciesCache = new Map<PokemonId, Observable<PokemonSpecies>>();
 
   public getAllPokemonRows(): Observable<PokemonRowData[]> {
@@ -59,6 +60,19 @@ export class PokemonRepository {
       map(details => details.species.url),
       switchMap(url => this.http.get<PokemonSpecies>(url))
     );
+  }
+
+  public getPokemonFormDetailsById(id: number): Observable<PokemonDetailsData> {
+    if (this.pokemonFormCache.has(id)) {
+      return this.pokemonFormCache.get(id)!
+    }
+
+    const pokemonForm$ = this.http
+      .get<PokemonDetailsData>(`${this.apiUrl}/pokemon/${id}`)
+      .pipe(hardCache());
+
+    this.pokemonFormCache.set(id, pokemonForm$);
+    return pokemonForm$;
   }
 
   public clearDetailsCache(): void {

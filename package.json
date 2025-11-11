@@ -32,6 +32,8 @@
     "@paddls/ngx-repository": "^9.1.1-rc.1",
     "@paddls/rxjs-common": "^2.2.1",
     "@primeuix/themes": "^1.2.5",
+    "echarts": "^6.0.0",
+    "ngx-echarts": "^20.0.2",
     "primeicons": "^7.0.0",
     "primeng": "^20.2.0",
     "rxjs": "~7.8.0",

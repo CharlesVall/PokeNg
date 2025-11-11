@@ -6,7 +6,9 @@ import { PokemonType } from '@core/models/'
 })
 export class DisplayTypesPipe implements PipeTransform {
   public transform(typesObject: PokemonType[]): string[] {
-    if (!typesObject || !Array.isArray(typesObject)) return [];
+    if (!typesObject || !Array.isArray(typesObject)) {
+      return [];
+    }
 
     const typeList = typesObject.map(type => type.type.name);
     return typeList;

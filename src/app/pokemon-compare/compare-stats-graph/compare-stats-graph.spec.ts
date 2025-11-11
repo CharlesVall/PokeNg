@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PokemonIndexModule } from './pokemon-index-module';
+import { CompareStatsGraph } from './compare-stats-graph';
 
-describe('PokemonIndexModule', () => {
-  let component: PokemonIndexModule;
-  let fixture: ComponentFixture<PokemonIndexModule>;
+describe('CompareStatsGraph', () => {
+  let component: CompareStatsGraph;
+  let fixture: ComponentFixture<CompareStatsGraph>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PokemonIndexModule]
+      imports: [CompareStatsGraph]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PokemonIndexModule);
+    fixture = TestBed.createComponent(CompareStatsGraph);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

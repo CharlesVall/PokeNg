@@ -5,6 +5,20 @@ import { Injectable } from '@angular/core';
 })
 export class VersionService {
   private pokemonGenerationMap = new Map<string, number>([
+    ["kanto", 1],
+    ["original-johto", 2],
+  ]);
+
+  public getGenerationNumberOfVersion(gameVersion: string): number {
+    if (!this.pokemonGenerationMap.has(gameVersion)) {
+      return 0
+    }
+    return this.pokemonGenerationMap.get(gameVersion)!
+  }
+}
+
+/*
+  private pokemonGenerationMap = new Map<string, number>([
     ["red", 1],
     ["blue", 1],
     ["yellow", 1],
@@ -43,11 +57,4 @@ export class VersionService {
     ["scarlet", 9],
     ["violet", 9]
   ]);
-
-  public getGenerationNumberOfVersion(gameVersion: string): number {
-    if (!this.pokemonGenerationMap.has(gameVersion)) {
-      return 0
-    }
-    return this.pokemonGenerationMap.get(gameVersion)!
-  }
-}
+*/

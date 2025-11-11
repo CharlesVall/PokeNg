@@ -4,6 +4,7 @@ import { map, Observable } from 'rxjs'
 import { PokemonRow } from '@core/models/pokemon-row';
 import { PokemonId } from '@core/models/pokemon-id';
 import { PokemonRepository } from '../pokemon-repository/pokemon-repository';
+import { PokemonForm, PokemonSpecies } from '@core/models';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,16 @@ export class PokemonService {
   public getPokemonRowById(pokemonId: PokemonId): Observable<PokemonRow | undefined> {
     return this.pokemonRepository.getPokemonRowById(pokemonId).pipe(
       map(data => PokemonRow.fromData(data))
+    )
+  }
+
+  public getPokemonSpeciesById(pokemonId: PokemonId): Observable<PokemonSpecies> {
+    return this.pokemonRepository.getPokemonSpeciesById(pokemonId);
+  }
+
+  public getPokemonFormDetailsById(id: number): Observable<PokemonForm> {
+    return this.pokemonRepository.getPokemonFormDetailsById(id).pipe(
+      map(data => PokemonForm.fromData(data))
     )
   }
 }

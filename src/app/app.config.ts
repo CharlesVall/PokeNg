@@ -2,12 +2,14 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChang
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideHttpClient } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
+import { provideEchartsCore } from 'ngx-echarts';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
 
 import { routes } from './app.routes';
 import { API_URL } from '@core/tokens/api-url.token';
 import { APP_LANGUAGE } from '@core/tokens/app-language.token';
+import { echarts } from './echarts.config';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,15 +18,16 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideHttpClient(),
     provideRouter(routes),
+    provideEchartsCore({ echarts }),
     providePrimeNG({
-        theme: {
-          preset: Aura,          
-          options: {
-            darkModeSelector: '.app-dark'
-          }
+      theme: {
+        preset: Aura,          
+        options: {
+          darkModeSelector: '.app-dark'
         }
+      }
     }),
-    {provide: API_URL, useValue: 'https://pokeapi.co/api/v2'},
-    {provide: APP_LANGUAGE, useValue: 'en'},
+    { provide: API_URL, useValue: 'https://pokeapi.co/api/v2' },
+    { provide: APP_LANGUAGE, useValue: 'en' },
   ]
 };

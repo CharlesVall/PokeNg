@@ -4,9 +4,11 @@ export * from './interfaces/pokemon-row-data'
 export * from './interfaces/pokemon-details-data'
 export * from './interfaces/pokemon-species'
 
+export * from './pokemon-comparable'
 export * from './pokemon-id'
 export * from './pokemon-row'
 export * from './pokemon-details'
+export * from './pokemon-form'
 
 export * from './interfaces/filter-criteria'
 export * from './interfaces/filter-strategy'

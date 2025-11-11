@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { IndexServices } from './index-services';
+import { PokemonFormService } from './pokemon-form-service';
 
-describe('IndexServices', () => {
-  let service: IndexServices;
+describe('PokemonFormService', () => {
+  let service: PokemonFormService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(IndexServices);
+    service = TestBed.inject(PokemonFormService);
   });
 
   it('should be created', () => {

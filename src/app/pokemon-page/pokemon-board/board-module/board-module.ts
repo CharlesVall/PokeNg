@@ -2,11 +2,11 @@ import { Component, input } from '@angular/core';
 import { PokemonStatsModule } from './pokemon-stats-module/pokemon-stats-module';
 import { PokemonCardModule } from './pokemon-card-module/pokemon-card-module';
 import { PokemonEvolutionModule } from './pokemon-evolution-module/pokemon-evolution-module';
-import { PokemonIndexModule } from './pokemon-index-module/pokemon-index-module';
+import { PokemonFormModule } from './pokemon-form-module/pokemon-form-module';
 
 @Component({
   selector: 'app-board-module',
-  imports: [PokemonCardModule, PokemonStatsModule, PokemonEvolutionModule, PokemonIndexModule],
+  imports: [PokemonCardModule, PokemonStatsModule, PokemonEvolutionModule, PokemonFormModule],
   templateUrl: './board-module.html',
   styleUrl: './board-module.scss'
 })

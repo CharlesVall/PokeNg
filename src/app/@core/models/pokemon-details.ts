@@ -23,7 +23,7 @@ export class PokemonDetails {
     this.gameIndices = pokemonDetailsData.game_indices;
   }
 
-  static fromData(data: PokemonDetailsData): PokemonDetails {
+  public static fromData(data: PokemonDetailsData): PokemonDetails {
     return new PokemonDetails(data);
   }
 }
