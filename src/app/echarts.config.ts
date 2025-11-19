@@ -1,22 +1,8 @@
-import * as echartsInstance from 'echarts/core';
+import { use, init } from 'echarts/core';
 import { CanvasRenderer } from 'echarts/renderers';
 import { RadarChart } from 'echarts/charts';
-import {
-  TooltipComponent,
-  LegendComponent,
-  GridComponent,
-  DatasetComponent,
-  TransformComponent
-} from 'echarts/components';
+import { TooltipComponent, LegendComponent } from 'echarts/components';
 
-echartsInstance.use([
-  CanvasRenderer,
-  RadarChart,
-  TooltipComponent,
-  LegendComponent,
-  GridComponent,
-  DatasetComponent,
-  TransformComponent,
-]);
+use([CanvasRenderer, RadarChart, TooltipComponent, LegendComponent]);
 
-export const echarts = echartsInstance;
+export const echarts = { init };

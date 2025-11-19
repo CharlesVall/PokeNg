@@ -3,7 +3,6 @@ import { NgxEchartsDirective } from 'ngx-echarts';
 import { CompareDataService } from '../compare-data-service/compare-data-service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { map } from 'rxjs';
 
 interface RadarIndicator {
   name: string;

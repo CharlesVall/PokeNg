@@ -9,17 +9,11 @@ import Aura from '@primeuix/themes/aura';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
+import { environment } from 'environments/environment';
 import { routes } from './app.routes';
 import { API_URL } from '@core/tokens/api-url.token';
 import { APP_LANGUAGE } from '@core/tokens/app-language.token';
 import { echarts } from './echarts.config';
-
-const CONFIG = {
-  apiUrl: 'https://pokeapi.co/api/v2',
-  defaultLanguage: 'en',
-  availableLanguages: ['en', 'fr'],
-  translationPath: './i18n/'
-} as const;
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -39,14 +33,14 @@ export const appConfig: ApplicationConfig = {
     }),
     
     provideTranslateService({
-      defaultLanguage: CONFIG.defaultLanguage,
+      defaultLanguage: environment.defaultLanguage,
       loader: provideTranslateHttpLoader({
-        prefix: CONFIG.translationPath,
+        prefix: environment.translationPath,
         suffix: '.json'
       })
     }),
     
-    { provide: API_URL, useValue: CONFIG.apiUrl },
-    { provide: APP_LANGUAGE, useValue: CONFIG.defaultLanguage },
+    { provide: API_URL, useValue: environment.apiUrl },
+    { provide: APP_LANGUAGE, useValue: environment.defaultLanguage },
   ]
 };

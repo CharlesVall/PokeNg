@@ -1,18 +1,24 @@
 import { Routes } from '@angular/router';
-import { PokemonHome } from './pokemon-home/pokemon-home';
-import { PokemonCompare } from './pokemon-compare/pokemon-compare';
-import { PokemonPokedex } from './pokemon-pokedex/pokemon-pokedex';
 
 export const routes: Routes = [
-  { path: '', component: PokemonHome},
-  { path: 'pokemon', component: PokemonPokedex},
+  { path: '',
+    loadComponent: () => import('./pokemon-home/pokemon-home')
+    .then(module => module.PokemonHome)
+  },
+  { path: 'pokemon',
+    loadComponent: () => import('./pokemon-pokedex/pokemon-pokedex')
+    .then(module => module.PokemonPokedex)
+  },
   { path: 'pokemon/:id', 
     loadComponent: () => import('./pokemon-page/pokemon-page')
     .then(module => module.PokemonPage)
   },
-  { path: 'compare', component: PokemonCompare},
+  { path: 'compare',
+    loadComponent: () => import('./pokemon-compare/pokemon-compare')
+    .then(module => module.PokemonCompare)
+  },
   { path: '**',
     loadComponent: () => import('./page-not-found/page-not-found')
-    .then(m => m.PageNotFound)
+    .then(module => module.PageNotFound)
   }
 ];
