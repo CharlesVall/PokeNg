@@ -12,7 +12,7 @@ export class DisplayAbilitiesPipe implements PipeTransform {
 
     const abilityList = abilitiesObject.map(ability => {
       const name = ability.ability.name;
-      return name.charAt(0).toUpperCase() + name.slice(1);
+      return name.charAt(0) + name.slice(1);
     });
 
     return abilityList;

@@ -1,3 +1,14 @@
 <div class="pokemon-home">
-  <h1>Poke<span>Ng.</span></h1>
+  <div class="pokemon-home__main">
+    <h1>Poke<span>Ng.</span></h1>
+    <p-divider layout="vertical"/>
+    <div class="pokemon-home__language">
+      <button (click)="switchAppLanguage('en')">
+        <h2>English</h2>
+      </button>
+      <button (click)="switchAppLanguage('fr')">
+        <h2>Français</h2>
+      </button>
+    </div>
+  </div>
 </div>

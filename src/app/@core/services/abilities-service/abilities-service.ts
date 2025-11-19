@@ -6,6 +6,7 @@ import { AbilityDetails, FlavorTextEntry } from '@core/models';
 import { APP_LANGUAGE } from '@core/tokens/app-language.token';
 import { API_URL } from '@core/tokens/api-url.token';
 import { hardCache } from '@paddls/rxjs-common';
+import { LanguageService } from '../language-service/language-service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +14,10 @@ import { hardCache } from '@paddls/rxjs-common';
 export class AbilitiesService {
   private readonly http = inject(HttpClient);
   private readonly apiUrl = inject(API_URL);
-  private readonly appLanguage = inject(APP_LANGUAGE);
+  private readonly languageService = inject(LanguageService)
 
   private readonly abilitiesDetailsCache = new Map<string, Observable<AbilityDetails>>()
+  private readonly appLanguage = this.languageService.getAppLanguage();
 
   private fetchAbilityDetails(abilityName: string): Observable<AbilityDetails> {
     return this.http
@@ -45,7 +47,7 @@ export class AbilitiesService {
   }
 
   private isMatchingDescription(entry: FlavorTextEntry): boolean {
-    return entry.language.name === this.appLanguage && 
+    return entry.language.name === this.appLanguage() && 
            entry.version_group.name === 'scarlet-violet';
   }
 }

@@ -1,6 +1,22 @@
+@use 'variables.scss' as *;
+
 .sidebar__bottom {
   position: relative;
   bottom: -20vh;
+  .lang-cta {
+    display: flex;
+    gap: 0.2rem;
+    .lang-selector {
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      width: 50%;
+      &--active {
+        border-color: $app-color;
+        border-radius: 4px;
+      }
+    }
+  }
   .menu__version {
     margin: 0;
     display: flex;

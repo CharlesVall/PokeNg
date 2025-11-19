@@ -3,10 +3,14 @@ import { TableModule } from 'primeng/table';
 import { CompareDataService } from '../compare-data-service/compare-data-service';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { PokemonPipes } from '@shared/pipes';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-selected-pokemon-list',
-  imports: [CommonModule, TableModule, NgOptimizedImage, PokemonPipes],
+  imports: [
+    CommonModule, TableModule, TranslateModule,
+    NgOptimizedImage, PokemonPipes
+  ],
   templateUrl: './selected-pokemon-list.html',
   styleUrl: './selected-pokemon-list.scss'
 })

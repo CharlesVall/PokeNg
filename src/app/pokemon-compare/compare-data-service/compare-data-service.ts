@@ -2,7 +2,6 @@ import { inject, Injectable, effect, signal, computed } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { PokemonComparable, PokemonDetails, PokemonId } from '@core/models';
 import { PokemonService } from '@core/services/pokemon-service/pokemon.service';
-import { log } from '@paddls/rxjs-common';
 import { SelectedPokemonService } from '@shared/components/pokemon-list/services/selected-pokemon-service/selected-pokemon-service';
 import { combineLatest, map, Observable, of, switchAll } from 'rxjs';
 
@@ -30,8 +29,7 @@ export class CompareDataService {
     return this.getSelectedPokemonDetailsList().pipe(
       map(detailsList =>
         detailsList.map(details => PokemonComparable.fromDetails(details))
-      ),
-      log()
+      )
     )
   }
 

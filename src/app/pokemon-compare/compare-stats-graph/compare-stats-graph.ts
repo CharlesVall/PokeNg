@@ -2,6 +2,8 @@ import { Component, computed, inject } from '@angular/core';
 import { NgxEchartsDirective } from 'ngx-echarts';
 import { CompareDataService } from '../compare-data-service/compare-data-service';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { map } from 'rxjs';
 
 interface RadarIndicator {
   name: string;
@@ -10,21 +12,27 @@ interface RadarIndicator {
 
 @Component({
   selector: 'app-compare-stats-graph',
-  imports: [NgxEchartsDirective],
+  imports: [NgxEchartsDirective, TranslateModule],
   templateUrl: './compare-stats-graph.html',
-  styleUrl: './compare-stats-graph.scss'
+  styleUrls: ['./compare-stats-graph.scss']
 })
 export class CompareStatsGraph {
-  private compareDataService = inject(CompareDataService);
-  
+  private readonly compareDataService = inject(CompareDataService);
+  private readonly translate = inject(TranslateService);
+
   private pokemonComparableList = toSignal(
     this.compareDataService.getSelectPokemonCompareList(),
     { initialValue: [] }
   );
 
+  private translationsLoaded = toSignal(
+    this.translate.onTranslationChange,
+    { initialValue: null }
+  );
+
   private comparableData = computed(() => {
     const pokemons = this.pokemonComparableList();
-    
+
     return pokemons.map((pokemon, index) => ({
       value: pokemon.getStatsValue(),
       name: pokemon.name,
@@ -56,14 +64,18 @@ export class CompareStatsGraph {
     return this.colors[colorIndex].replace('INDEX', opacity.toString());
   }
 
-  private indicators: RadarIndicator[] = [
-    { name: 'Hp', max: 255 },
-    { name: 'Sp. Attack', max: 255 },
-    { name: 'Sp. Def', max: 255 },
-    { name: 'Speed', max: 255 },
-    { name: 'Defense', max: 255 },
-    { name: 'Attack', max: 255 }
-  ];
+  private indicators = computed<RadarIndicator[]>(() => {
+    const loaded = this.translationsLoaded();
+
+    return [
+      { name: this.translate.instant('pokemon-compare.hp'), max: 255 },
+      { name: this.translate.instant('pokemon-compare.sp_attack'), max: 255 },
+      { name: this.translate.instant('pokemon-compare.sp_defense'), max: 255 },
+      { name: this.translate.instant('pokemon-compare.speed'), max: 255 },
+      { name: this.translate.instant('pokemon-compare.defense'), max: 255 },
+      { name: this.translate.instant('pokemon-compare.attack'), max: 255 }
+    ];
+  });
 
   chartOption = computed(() => ({
     tooltip: {
@@ -71,7 +83,7 @@ export class CompareStatsGraph {
       formatter: (params: any) => {
         const data = params.value;
         let result = `<strong>${params.name}</strong><br/>`;
-        this.indicators.forEach((indicator, index) => {
+        this.indicators().forEach((indicator, index) => {
           result += `${indicator.name}: ${data[index]}<br/>`;
         });
         return result;
@@ -85,8 +97,8 @@ export class CompareStatsGraph {
     radar: {
       shape: 'polygon',
       center: ['50%', '38%'],
-      radius: '68%',
-      indicator: this.indicators,
+      radius: '63%',
+      indicator: this.indicators(),
       axisName: {
         color: 'white',
         fontSize: 13,

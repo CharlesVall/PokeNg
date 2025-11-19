@@ -1,5 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -21,6 +21,7 @@ import { FILTER_STRATEGIES_PROVIDERS } from './services/filter-strategy-service/
 import { SORT_STRATEGIES_PROVIDERS } from './services/sort-strategies-service/sort-strategies/sort-strategies-provider';
 import { CheckboxModule } from 'primeng/checkbox';
 import { SelectedPokemonService } from './services/selected-pokemon-service/selected-pokemon-service';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @Component({
@@ -29,7 +30,7 @@ import { SelectedPokemonService } from './services/selected-pokemon-service/sele
     CommonModule, TableModule, SkeletonModule, MultiSelectModule,
     PokemonPipes, PokemonTypesDisplayer, PokemonAbilitiesDisplayer,
     NgOptimizedImage, ReactiveFormsModule, InputTextModule,
-    FormsModule, CheckboxModule
+    FormsModule, CheckboxModule, TranslateModule
   ],
   templateUrl: './pokemon-list.html',
   styleUrl: './pokemon-list.scss',

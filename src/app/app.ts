@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { PrimeNG } from 'primeng/config';
 import { MenuBar } from './menu-bar/menu-bar';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +12,8 @@ import { MenuBar } from './menu-bar/menu-bar';
   styleUrl: './app.scss'
 })
 export class App implements OnInit {
-
-  public constructor(private primeng: PrimeNG) {}
+  private readonly primeNg = inject(PrimeNG)
+  private readonly translate = inject(TranslateService)
   
   public toggleDarkMode() {
     const element = document.querySelector('html');
@@ -20,8 +21,11 @@ export class App implements OnInit {
   }
 
   public ngOnInit() {
-    this.primeng.ripple.set(true);
-
+    this.primeNg.ripple.set(true);
+    
     this.toggleDarkMode()
+    this.translate.addLangs(['en', 'fr']);
+    this.translate.setDefaultLang('en');
+    this.translate.use('fr')
   }
 }

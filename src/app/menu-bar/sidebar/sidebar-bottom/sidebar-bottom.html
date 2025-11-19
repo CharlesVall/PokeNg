@@ -1,4 +1,19 @@
 <div class="sidebar__bottom">
+  <div class="lang-cta">
+    <button
+      class="lang-selector"
+      [class.lang-selector--active]="isLanguageActive('en')()"
+      (click)="switchLanguageToEnglish()">
+      en
+    </button>
+    <button
+      class="lang-selector"
+      [class.lang-selector--active]="isLanguageActive('fr')()"
+      (click)="switchLanguageToFrench()">
+      fr
+    </button>
+  </div>
   <p-divider />
   <p class="menu__version">V 0.1</p>
+
 </div>

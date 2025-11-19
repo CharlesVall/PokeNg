@@ -3,19 +3,37 @@
     [value]="(selectedPokemonDetailsList$ | async) || []" 
     [scrollable]="true"
     [tableStyle]="{ 'table-layout': 'fixed', 'width': '100%' }"
-    style="overflow-x: auto; overflow-y: auto; display: block;"
+    scrollHeight="37rem"
   >
     <ng-template #header>
       <tr class="pokemon-list__header">
-        <th style="width: 7%;">Id</th>
-        <th style="width: 14%;">Image</th>
-        <th style="width: 19%;">Name</th>
-        <th style="width: 10%">Hp</th>
-        <th style="width: 10%;">Atk</th>
-        <th style="width: 10%;">Sp. Atk</th>
-        <th style="width: 10%;">Def</th>
-        <th style="width: 10%;">Sp. Dfs</th>
-        <th style="width: 10%;">Spd</th>
+        <th style="width: 7%;">
+          {{ "select-list.id" | translate }}
+        </th>
+        <th style="width: 14%;">
+          {{ "select-list.image" | translate }}
+        </th>
+        <th style="width: 19%;">
+          {{ "select-list.name" | translate }}
+        </th>
+        <th style="width: 10%">
+          {{ "select-list.hp" | translate }}
+        </th>
+        <th style="width: 10%;">
+          {{ "select-list.atk" | translate }}
+        </th>
+        <th style="width: 10%;">
+          {{ "select-list.sp_atk" | translate }}
+        </th>
+        <th style="width: 10%;">
+          {{ "select-list.def" | translate }}
+        </th>
+        <th style="width: 10%;">
+          {{ "select-list.sp_def" | translate }}
+        </th>
+        <th style="width: 10%;">
+          {{ "select-list.spd" | translate }}
+        </th>
       </tr>
     </ng-template>
     <ng-template #body let-pokemon>
